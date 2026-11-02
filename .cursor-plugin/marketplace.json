@@ -1,0 +1,12 @@
+{
+  "name": "dessn",
+  "owner": {
+    "name": "Dessn"
+  },
+  "plugins": [
+    {
+      "name": "dessn",
+      "source": "plugins/dessn"
+    }
+  ]
+}

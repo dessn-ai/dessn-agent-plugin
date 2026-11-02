@@ -1,0 +1,40 @@
+{
+  "name": "dessn",
+  "version": "1.0.30",
+  "description": "Design on Dessn from your own agent: Dessn's design skills (explore an app, reuse its design system, variations as copies checked against real pictures, readable boards and flows) plus the Dessn MCP, signed in with OAuth.",
+  "author": {
+    "name": "Dessn",
+    "url": "https://dessn.ai"
+  },
+  "homepage": "https://mcp.dessn.ai/install",
+  "keywords": [
+    "design",
+    "canvas",
+    "prototyping",
+    "design-system",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Dessn",
+    "shortDescription": "Design on your real app, live on a canvas",
+    "longDescription": "Dessn is a design canvas where every frame is your real app running from its own code. This plugin connects the Dessn MCP (sign in once with your Dessn account) and adds Dessn's design skills: explore an app before designing, reuse its design system, make variations as frame copies you edit and check against real pictures, and lay out boards, flows and diagrams people can read.",
+    "developerName": "Dessn",
+    "category": "Design",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://dessn.ai",
+    "defaultPrompt": [
+      "Make three variations of the Dashboard in my Dessn project, side by side on a new page, using the app's own components",
+      "Put every surface of my Dessn project on one page, grouped by area",
+      "Map the sign-up flow of my Dessn project as a board with labelled arrows"
+    ],
+    "brandColor": "#1C1A1D",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

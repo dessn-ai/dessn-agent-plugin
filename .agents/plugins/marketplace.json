@@ -1,0 +1,20 @@
+{
+  "name": "dessn",
+  "interface": {
+    "displayName": "Dessn"
+  },
+  "plugins": [
+    {
+      "name": "dessn",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dessn"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Design"
+    }
+  ]
+}
