@@ -9,7 +9,7 @@ A board is read by someone who wasn't in the chat. It says what it is in a title
 
 ## The tools
 
-- `dessn_pages_create({ project, title, private?, key })` → the page's `id` and `url`. No project yet: `newProject: '<a name>'` in place of `project` makes a blank one (no code: its frames are HTML frames, `from: { html }` or `{ blank: true }`), or answers the one made before for that name.
+- `dessn_pages_create({ project, title, private?, key })` → the page's `id` and `url`. No project yet: `newProject: '<a name>'` in place of `project` makes a blank one (no code: its frames are HTML frames, `from: { html }` or `{ blank: true }`, and nothing plays until the person connects their app's code), or answers the one made before for that name.
 - `dessn_nodes_create({ page, key, items, diagram? })` writes a batch in order: `frame` (from a Library screen `{ surface: <id, link or route> }`, or a copy `{ frame, copy: true }`), `note` (`html`: h1, h2, p, li, small, code, or Markdown; `w`, `h: 'auto'`), `text`, `image` (an uploaded asset), `arrow` (`from`, `to`, `label`, `dashed`, `heads`), `section`. Every item but an arrow takes `x, y` or a `position`: `{ rightOf | leftOf | below | above: <id or an earlier item's key>, gap?, align? }`, which slides past what is already there. Give items their own `key` so later items and arrows can name them. `dryRun: true` answers where each would land and writes nothing.
 - `dessn_nodes_arrange({ page, as, ids | root | groups })`: `row`, `column`, `grid` (`perRow`), `flow` (follows the arrows from `root`, widening gaps to hold each label), `sections` (`groups: [{ heading, description?, ids }]`: a heading over each group's grid).
 - `dessn_nodes_update({ page, key, changes })`: move, resize, rename, re-route a frame (`route`), edit a note (`expectedRevision` from its last read), re-label an arrow. `size: { h: 'fit' }` makes a frame as tall as its page, so nothing below the first screen is cut off (up to 4,000 px).
@@ -18,6 +18,12 @@ A board is read by someone who wasn't in the chat. It says what it is in a title
 - `dessn_program_run({ page, code })` runs one JavaScript program against the board (`canvas.*`, `dessn_guide` topic `program`): it pays when many writes depend on what earlier ones answered (a frame's height, then the notes under it; arrows in an order read off the board); a batch you can write after one read is quicker as `dessn_nodes_create`.
 
 Every field: `dessn_guide` topic `board`.
+
+## What goes on a board, and what plays
+
+- **Frames of the app**: Library surfaces, copies, copies at a new route. They are the app running from its code; in Dessn a person presses Play and clicks through them. A screen, a state, a variation, a component gallery or a design-system sheet of the app is a copy whose code you write (skill **dessn-design**, "A design-system sheet").
+- **HTML frames** (`from: { html }`): drawn from your HTML, sharp at any zoom and editable, with no Play (nothing in them runs; only their links open). For visuals: an OG image, slides, a moodboard. Something people click and play is a frame of the app, never an HTML frame.
+- **Images**: real pictures, such as photos, logos, or screenshots kept as references. A picture of the app's own UI plays nothing and goes stale with its code.
 
 ## A board of screens (QA, review, an inventory)
 
