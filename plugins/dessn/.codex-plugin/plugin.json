@@ -1,6 +1,6 @@
 {
   "name": "dessn",
-  "version": "1.0.32",
+  "version": "1.0.34",
   "description": "Design on Dessn from your own agent: Dessn's design skills (explore an app, reuse its design system, variations as copies checked against real pictures, readable boards and flows) plus the Dessn MCP, signed in with OAuth.",
   "author": {
     "name": "Dessn",
