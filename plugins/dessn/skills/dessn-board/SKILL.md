@@ -1,6 +1,6 @@
 ---
 name: dessn-board
-description: Lay out Dessn canvas pages a person can read without the chat. QA boards of an app's surfaces grouped by area, user flows of live frames with labelled arrows (happy path in a row, edge cases under their step), diagrams drawn from Mermaid or nodes and edges, title and caption notes, sections, and frames fitted to their content. Use for "put every surface of our app on a page", "map the sign-up flow", "draw this architecture or state diagram on the canvas", "tidy / arrange this board", "label these frames", or "make the frames fit".
+description: Lay out Dessn canvas pages a person can read without the chat. QA boards of an app's surfaces grouped by area, user flows of the app's live screens joined by labelled arrows (the main path in a row, each failure a real state of its step's screen under it), diagrams drawn from Mermaid or nodes and edges, title and caption notes, sections, and frames fitted to their content. Use for "put every surface of our app on a page", "map our sign-up flow", "show the checkout flow with each step and where errors go", "lay out the onboarding journey for a new user", "draw this architecture or state diagram on the canvas", "tidy / arrange this board", "label these frames", or "make the frames fit".
 ---
 
 # Boards on Dessn
@@ -36,10 +36,14 @@ Every screen in one call: with one frame of the app on the page, the item `{ kin
 
 ## A user flow
 
-A flow is the app's real screens in the order a person moves through them.
+<!-- dessn:user-flow -->
+A flow a person asks to see ("map our sign-up flow", "show the checkout flow with each step and where errors go", "lay out the onboarding journey for a new user") is the app's own screens on their canvas in the order a person moves through them: each step a frame of the app at its route, or a copy whose code shows the state only clicks reach (an open dialog, a filled form), joined by arrows labelled with what the person does. Where it goes wrong is part of the flow. Each failure the code raises is a real state of the app: where the code sends the person (an error page, no results, a 404) is a frame at that route; what it shows in place (a field's message, a toast, an error in a dialog) is a copy of its step's frame whose code shows it, with the words the code uses. Failures sit in a row under the step they happen at, numbered after it ("2a · No file"), each joined to its step by a dashed arrow labelled with what went wrong. A failure the code never handles (nothing reads the file's rows) is a note beside its step. Step cards beside a separate row of screens, or a table of steps in the chat, leave the person to match each step to its screen.
+<!-- /dessn:user-flow -->
 
-- Find the steps in the app itself: the Library's screens and their `via` (which screen links to which), the routes in the code (`dessn_files_list` with `grep` for the router or the links, `dessn_files_read` for the nav), and the conditions that change what a screen shows (empty, error, loading, permission). Write the plan once: each step's name, how it is reached (a route, or a route plus a query the app's mocks read), the action that leads there, a one or two line caption.
-- The happy path runs left to right, numbered "1 · Cart", "2 · Shipping"; a branch takes its step's number ("2a · Invalid postcode") and sits under the step where it happens.
+A step's words (what the person does there, what can go wrong) go in a caption under its frame.
+
+- Find the steps in the app itself: the Library's screens and their `via` (which screen links to which), the routes in the code (`dessn_files_list` with `grep` for the router or the links, `dessn_files_read` for the nav; `dessn_canvas_get` on any frame of the app lists its `routes`), and the conditions that change what a screen shows (empty, error, loading, permission). A step the Library has no screen for is still a route of the app: `from: { frame, state: '/signup' }` makes its frame on that frame's sandbox. Write the plan once: each step's name, how it is reached (a route, or a route plus a query the app's mocks read), the action that leads there, a one or two line caption.
+- The main path runs left to right, numbered "1 · Cart", "2 · Shipping".
 - Each frame is a live screen at its real route (`from: { surface: '/checkout/shipping' }`, or `route` on the item). A state only clicks reach (an open dialog, a filled form) is a copy of the step's frame whose code shows that state (dessn-design), or Dessn's design agent can make it (`dessn_design_send`).
 - Arrows go after the nodes they join. Each label says what the person does or what happens ("Click Pay", "Payment fails"); keep one meaning per style (solid for the main path, dashed for going back or a failure).
 - One `dessn_nodes_create` batch for the frames, captions and arrows, then `dessn_nodes_arrange({ as: 'flow', root: <step 1> })` lays it out and makes room for every label.
