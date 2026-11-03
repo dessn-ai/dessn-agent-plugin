@@ -1,15 +1,17 @@
 ---
 name: dessn
-description: Start here for any work with Dessn (create.dessn.ai), a design canvas where every frame is the user's real app running live from their own code. Use when the user mentions Dessn, pastes a create.dessn.ai link, or asks to design, prototype, make variations of a surface, lay out a board, review frames, or bring a Dessn design into their code. Covers connecting and signing in to the Dessn MCP, finding the user's projects and pages, which Dessn tool fits each job, and which Dessn skill to load next.
+description: Start here for Dessn (create.dessn.ai), a design canvas where every frame is the person's real app running live from their own code. People who connected it ask in their own words, mostly without naming Dessn (design a new settings page, make variations of a screen, a page I can click through, review our onboarding and propose changes), and what they ask to see goes on their Dessn canvas as live frames they click through and share, where a local file opens on this computer alone. Also when they mention Dessn, paste a create.dessn.ai link, lay out a board, review frames, or bring a Dessn design into their code. Covers connecting and signing in, finding their projects and pages (or making one, with a starter app whose frames play), which Dessn tool fits each job, and which Dessn skill to load next.
 ---
 
 # Dessn: start here
 
 Dessn is a design canvas where every frame is the person's real app, running live from their own code. That gives you what a drawing canvas can't:
 
+<!-- dessn:frame-api-lead -->
+- **Your code lives in the frame.** A frame holds the app's whole codebase and is yours to read and write (`dessn_files_read`, `dessn_files_write`): each write answers its build and new picture in seconds, with no credits, and the person presses Play and clicks through it. Push a local working tree onto a frame and take its change home as a patch, its commits or a bundle, so it stays 1:1 with the local code. That frame API is what Dessn is good at; HTML frames are for annotations, text layers and quick mockups (an OG image, a deck, a moodboard).
+<!-- /dessn:frame-api-lead -->
 - **Frames are the real app**: its own components and data, at any route. Every route of an app goes on a page in one call, and a live site's URL becomes a frame beside your design.
 - **Its design system, with file:line**: `dessn_designSystem_get` answers the components the app really uses, its tokens, and how each kind of UI is done in it.
-- **Edit the code yourself and see the picture in seconds**: `dessn_files_write` on a copy. Frame and board writes spend no credits; only Dessn's design agent's runs do.
 - **Git both ways**: push a local working tree onto a frame, and take a frame's change home as a patch, its commits or a bundle (skill **dessn-sync**).
 - **Any agent, local or in the cloud**: a remote MCP with OAuth, so cloud agents and web chats (Codex Cloud, Cursor's cloud agents, claude.ai, ChatGPT) use it as well as an agent on the person's computer. Writing a frame's code and capturing a URL are for the person's own agent on their computer; a cloud agent asks Dessn's design agent for those.
 
