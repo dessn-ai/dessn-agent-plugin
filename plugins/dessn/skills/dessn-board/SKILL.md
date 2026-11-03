@@ -22,7 +22,7 @@ Every field: `dessn_guide` topic `board`.
 ## What goes on a board, and what plays
 
 - **Frames of the app**: Library surfaces, copies, copies at a new route. They are the app running from its code; in Dessn a person presses Play and clicks through them. A screen, a state, a variation, a component gallery or a design-system sheet of the app is a copy whose code you write (skill **dessn-design**, "A design-system sheet").
-- **HTML frames** (`from: { html }`): drawn from your HTML, sharp at any zoom and editable, with no Play (nothing in them runs; only their links open). For visuals: an OG image, slides, a moodboard. Something people click and play is a frame of the app, never an HTML frame.
+- **HTML frames** (`from: { html }`): drawn from your HTML, sharp at any zoom and editable, with no Play (nothing in them runs; only their links open). For notes, annotations and visuals: an OG image, slides, a moodboard. Something people click and play, or a mock of a change to the app's UI, is a frame of the app (a copy of its screen's frame whose code you write), never an HTML frame.
 - **Images**: real pictures, such as photos, logos, or screenshots kept as references. A picture of the app's own UI plays nothing and goes stale with its code.
 
 ## A board of screens (QA, review, an inventory)
