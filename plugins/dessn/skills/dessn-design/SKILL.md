@@ -143,6 +143,7 @@ A frame whose write carried its picture (its answer's image) is looked at. Any o
 - Does it show the idea, at a glance, as named?
 - Is anything broken: text overflowing, a part cut off at the bottom (fit it), a layout that collapsed, an element that moved that you did not mean to move?
 - Up close, where the change is small: `region: { x, y, w, h }` on the frame's link is a close-up of that part of its page, drawn up to four times over (a 24 px face is about 13 px in a whole-frame picture).
+- Does what it does work: a hover, a menu, a flow, following and stopping. `steps` on the frame's link presses, hovers, types and scrolls inside the running frame and pictures it where you ask (`steps: [{ hover: 'Kevin' }, { wait: 1000 }, { shot: true }, { click: 'Kevin' }, { shot: true }, { press: 'Escape' }, { shot: true }]`), saying what each step hit; a `read` step gives an element's box, state and look. A state pinned open by a URL switch shows the state, not that a press gets there.
 - Is it plainly the same app: for a variation or a state, the same type, colours, components and spacing; for a direction, the same data and working controls, led by its own idea in its own layout, type and palette?
 
 The page picture (`dessn_canvas_screenshot({ target: <page link>, region: 'fit', fresh: { waitMs: 30000 } })`) shows the set side by side, as the person will open it: send it in the same turn as the frames' picture, as the two don't depend on each other. Fix what is wrong with another write to that copy, then look again.
