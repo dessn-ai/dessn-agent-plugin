@@ -1,7 +1,7 @@
 {
   "name": "dessn",
   "displayName": "Dessn",
-  "version": "1.0.50",
+  "version": "1.0.61",
   "description": "Design on Dessn from your own agent: Dessn's design skills (explore an app, reuse its design system, variations as copies checked against real pictures, readable boards and flows) plus the Dessn MCP, signed in with OAuth.",
   "author": {
     "name": "Dessn",
@@ -23,7 +23,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/session-start.md\""
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/session-fact.sh\""
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/session-fact.sh\""
           }
         ]
       }

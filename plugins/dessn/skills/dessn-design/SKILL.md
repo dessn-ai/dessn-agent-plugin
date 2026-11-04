@@ -1,6 +1,6 @@
 ---
 name: dessn-design
-description: Design on the person's Dessn canvas, the way Dessn's own design agent does. People ask in their own words, mostly without naming Dessn (design a new settings page, make 3 variations of the pricing, add an empty state to the projects list, make a landing page for a feature, a pricing page I can click through, review our onboarding and propose changes, explore different directions, mock this change, show it at phone width). With Dessn connected, each becomes frames of their real app on their canvas, a copy whose code you write in seconds with no credits, that they click through, compare and share, kept 1:1 with their local code by git; a local edit shows on this computer alone. Reuse the app's components (dessn_designSystem_get), never recreate them, check each result against a real picture, mock a UI change as a copy of the app's frame whose code you write, and keep HTML frames for notes and annotations. Also for a design-system sheet, denser or darker versions, and empty, error and loading states.
+description: Design on the person's Dessn canvas, the way Dessn's own design agent does. People ask in their own words, mostly without naming Dessn (design a new settings page, make 3 variations of the pricing, add an empty state to the projects list, make a landing page for a feature, a pricing page I can click through, review our onboarding and propose changes, explore different directions, mock this change, show it at phone width). With Dessn connected, each becomes frames of their real app on their canvas, a copy whose code you write in seconds with no credits, that they click through, compare and share, kept 1:1 with their local code by git; a local edit shows on this computer alone. Reuse the app's components (dessn_designSystem_get), never recreate them, check each result against a real picture, mock a UI change as a copy of the app's frame whose code you write, and keep HTML frames for notes and annotations. Also for a design-system page in the app, denser or darker versions, and empty, error and loading states.
 ---
 
 # Design on Dessn
@@ -56,7 +56,7 @@ dessn_files_write answers each frame's build: ok, or its compile, runtime and ty
 
 ## The app's design system
 
-Dessn indexes each project's design system. To find the project's own fonts, sizes and icons, query dessn_designSystem_get: { project, kind: 'tokens', q: 'type' } gives its font families, type scale and text styles, and { kind: 'components', q: 'icon' } its icon sets. The index is saved with each Library build, so a call wakes nothing: { kind: 'components', q: '<its job>' } finds the component to reuse, and similar: '<a JSX snippet>' the app's components most like what you were about to write. A page that shows the design system is a copy of a frame at a new route ('/design-system') whose code you write (dessn_guide 'design-system').
+Dessn indexes each project's design system. To find the project's own fonts, sizes and icons, query dessn_designSystem_get: { project, kind: 'typography' } gives its font families, type scale and text styles, and { kind: 'icons' } its icon sets. The index is saved with each Library build, so a call wakes nothing: { kind: 'components', q: '<its job>' } finds the component to reuse, and similar: '<a JSX snippet>' the app's components most like what you were about to write. A page that shows the design system is a board page of five sections, its components real frames of the app (skill dessn-design-system, dessn_guide 'design-system'); asked for a page inside the app, it is a copy of a frame at a new route ('/design-system') whose code you write.
 
 An Astro site or a Svelte app has notes of its own (its screens, its files, where its data comes from): dessn_guide 'design', "Astro and Svelte apps".
 <!-- /dessn:design-guidance -->
@@ -81,7 +81,7 @@ An Astro site or a Svelte app has notes of its own (its screens, its files, wher
 - **The original on it**, when it isn't there yet: `dessn_nodes_create({ page, key, items: [{ kind: 'frame', from: { surface: <surface id or route> }, name, x: 0, y: 0 }] })`.
 - **Each variation is a copy**: `{ kind: 'frame', from: { frame: <original's id or link>, copy: true }, name: 'Dashboard · compact', position: { rightOf: <original's id or an earlier item's key> } }`, all copies in one `dessn_nodes_create` batch (give each item its own `key` so the next can sit `rightOf` it). A copy runs on its own sandbox with the original's code; the call waits while it takes it. Writing the original changes the original, so the original stays as it is.
 - **A mock of a change** ("mock: the settings page gets a Billing tab") is the same: the frame of the screen it changes (its surface), copied, with the change written in its code, so the mock is the app itself with the change and plays. A note beside it says what changed.
-- **Phone, tablet and desktop side by side**: frames of the original's own sandbox at each width, `{ kind: 'frame', from: { frame: <the original>, state: <its route> }, size: { w: 375 }, position: { rightOf: <the original> } }` (and `w: 768`). Each is the same code at another width, so a fix to that code shows in all of them. A desktop app's page is measured at desktop width, so such a frame keeps its source's height until you give one: `dessn_canvas_screenshot({ target: <it>, fullPage: true })` renders it at its width, and that answer's `height` is the one to send (`dessn_nodes_update`, `size: { w: 375, h }`). `copy: true` at a width makes a separate sandbox instead, for a variant. A phone layout keeps what the desktop gives, the way phone apps do: the brand and a way to each of the app's places in one row at the top (the logo and a menu button with the sidebar's other parts behind it, or the 2 or 3 places as tabs), the main action, body text of 14 to 16 px. A sidebar dropped leaves no way around; one stacked whole above the page pushes the page's own heading off the first screen. A screenshot under 1,024 px wide says either in `issues`, and a sideways scroll or text under 12 px: what is missing from a picture doesn't show in it.
+- **Phone, tablet and desktop side by side**: frames of the original's own sandbox at each width, `{ kind: 'frame', from: { frame: <the original>, state: <its route> }, size: { w: 390 }, position: { rightOf: <the original> } }` (and `w: 834`). Each is the same code at another width, so a fix to that code shows in all of them. A desktop app's page is measured at desktop width, so such a frame keeps its source's height until you give one: `dessn_canvas_screenshot({ target: <it>, fullPage: true })` renders it at its width, and that answer's `height` is the one to send (`dessn_nodes_update`, `size: { w: 375, h }`). `copy: true` at a width makes a separate sandbox instead, for a variant. A phone layout keeps what the desktop gives, the way phone apps do: the brand and a way to each of the app's places in one row at the top (the logo and a menu button with the sidebar's other parts behind it, or the 2 or 3 places as tabs), the main action, body text of 14 to 16 px. A sidebar dropped leaves no way around; one stacked whole above the page pushes the page's own heading off the first screen. A screenshot under 1,024 px wide says either in `issues`, and a sideways scroll or text under 12 px: what is missing from a picture doesn't show in it.
 - Name every frame for its idea, so the board reads without the chat.
 - **States of a flow** (at rest, hover, open, following, empty) are a frame each, in the order they happen, each with a short caption under it: the state, and what the person did to get there (a note or text item at `position: { below: <the frame's key> }`). A change to a small part of the screen (a row of 24 px faces, a menu, a badge: about a tenth of the frame or less) is a few pixels at board zoom in a whole frame: show it focused on that part (`dessn_nodes_update`, `{ id, view: { x, y, w, h } }` in the page's px, the frame's own shape: a 1440 × 900 frame's top right is `{ x: 880, y: 0, w: 560, h: 350 }`; the frame keeps its size, which its page lays out at), with one whole frame beside for where it sits. On Dessn's comparisons (11-04) judges marked down a board of eight whole frames with titles only ("the faces are tiny there") and read the captioned, focused one first.
 
@@ -97,6 +97,65 @@ An Astro site or a Svelte app has notes of its own (its screens, its files, wher
 - A frame write answered `forbidden` or `status: 'not_written'` means this connection may not write frames (an API key, a web connector, where there is also no folder): `dessn_design_send` asks Dessn's design agent instead, as the person. One run makes several frames, so the variations of one ask go in one run, on a new page or beside the screen; no copies to make first.
 - The design agent is also the better tool when the change needs Dessn's runtime: a screen behind a sign-in or a click, data the app fetches from a service, a flow mapped from the routes. `dessn_design_send({ target: <page or frame link>, message, edit? })` answers a `runId` and `pageUrl` at once; `dessn_design_status` follows it (3 to 10 minutes, the person's credits). An empty, error or loading state of an app whose data is in its code (a list in a component, a sample file) is a write to the copy: its data or a branch, seconds.
 
+### When the mock data has to act
+
+<!-- dessn:mock-data -->
+A designer clicks around the preview as if it were the product. The app's
+main actions must work against the mock data, through the mocking layer's
+collections:
+
+- send or post appends the row; a chat or assistant UI also gets a
+  plausible mock reply appended, streamed in the app's own format when the
+  app streams;
+- create inserts, edit updates, delete removes, and toggles (star, archive,
+  done, read) persist on the row;
+- the query behind the list or thread reads the same collection, so the UI
+  updates: HTTP apps refetch through their own cache, and Convex, Zero and
+  `mock.ws` transports re-push when a collection changes.
+
+A collection (`mock.data(name, rows)` in a data file, `collections.<name>`
+inside Convex, GraphQL and tRPC handlers) has `all()`, `get(id)`,
+`where(fields)`, `insert(row)`, `update(id, patch)`,
+`upsert(id, create, patch?)` and `remove(id)`. `insert` assigns no id, so
+set one. An HTTP handler receives `{ url, params, options }` and has
+nothing else to read (no `body` or `request`): the request body is `options.body` (a string for
+JSON), the headers `new Headers(options?.headers)`, the query `new URL(url,
+location.origin)`; a handler with a status, and a GraphQL operation's handler (variables in, the operation's `data` out, wrapped by the engine), are in `references/authoring-contract.md`.
+Return what the caller reads (read its code).
+
+```ts
+import { defineMock, mock } from '@dessn/mocking'
+import { messages, tasks } from './data/app.data.mock'
+
+export default defineMock({ behaviors: [
+  mock.get('/api/threads/:id/messages', ({ params }) => messages.where({ threadId: params.id })),
+  mock.post('/api/threads/:id/messages', ({ params, options }) => {
+    const { text } = JSON.parse(String(options?.body ?? '{}'))
+    const at = new Date().toISOString()
+    messages.insert({ id: `msg-${Date.now()}`, threadId: params.id, role: 'user', text, createdAt: at })
+    return messages.insert({ id: `msg-${Date.now()}-r`, threadId: params.id, role: 'assistant',
+      text: `Here is a first pass at "${text}": ...`, createdAt: at })
+  }),
+  mock.patch('/api/tasks/:id', ({ params, options }) => tasks.update(params.id, JSON.parse(String(options?.body)))),
+  mock.delete('/api/tasks/:id', ({ params }) => ({ ok: tasks.remove(params.id) })),
+  // Convex: the write re-pushes every live query that read `messages`.
+  mock.convex.mutation('messages:send', (args, { collections }) =>
+    collections.messages.insert({ _id: `msg_${Date.now()}`, _creationTime: Date.now(), ...args })._id),
+] })
+```
+
+A streaming reply returns `new Response(stream)` with the app's content
+type (`text/event-stream`, the AI SDK's stream) and the chunk format its
+parser reads, and inserts the finished reply into the collection so the
+reopened thread shows it. Avoid static fixtures that ignore writes (a
+`{ ok: true }` that leaves the rows unchanged) and hand-edited UI state (a
+patched component, a hard-coded extra message). Full shapes:
+`references/authoring-contract.md` (HTTP, Convex, WebSocket),
+`references/scaffolding.md` (GraphQL, tRPC) and `references/chat-replies.md`
+(a chat on the AI SDK's `useChat`: the streamed reply, tool parts, a seeded
+conversation, and states from data and the URL rather than scripted clicks).
+<!-- /dessn:mock-data -->
+
 ## Inspiration boards: references beside your design
 
 When the person wants ideas from other sites ("an inspiration board for a pricing page", "put a few good onboarding flows next to ours"):
@@ -105,9 +164,9 @@ When the person wants ideas from other sites ("an inspiration board for a pricin
 - **Read them, don't copy them.** Picture each reference full size (`dessn_canvas_screenshot({ frames: [...] })`) and note what works: the layout and hierarchy, the type scale and weights, the colour and contrast, how density and emphasis guide the eye. Then design your own frame beside them (a copy of the app's surface, sections 2 and 3) in the app's own components and tokens, borrowing those ideas. Never paste a reference's markup, copy, logos, brand colours or pictures into the design: the result is the person's product, informed by the references.
 - **Say what you took.** A short note or your reply names, per reference, the idea the design borrowed.
 
-## A design-system sheet
+## A design-system page inside the app
 
-A sheet of the app's design system is a frame like any design: a copy of a Library surface at a new route (`route: '/design-system'`, section "A new design" below), so its specimens are the app's own classes and components rendering live, which notes and drawn boxes can only describe. The person can press Play and use them (a button's hover, a tab, the dialog). A sheet rendered on your computer and uploaded as a picture shows none of that and stops matching the code at its next change; an HTML frame is drawn and never plays, for visuals (an OG image, a deck). A big system reads better as a few sheets (colour and type, then components by family) side by side than one very tall one. What reads well, top to bottom at 1440 wide:
+A page of the design system on the board is skill **dessn-design-system**: five sections of values and real frames of the app. When the person asks for one inside the app, it is a frame like any design: a copy of a Library surface at a new route (`route: '/design-system'`, section "A new design" below), so its specimens are the app's own classes and components rendering live, which notes and drawn boxes can only describe. The person can press Play and use them (a button's hover, a tab, the dialog). A sheet rendered on your computer and uploaded as a picture shows none of that and stops matching the code at its next change; an HTML frame is drawn and never plays, for visuals (an OG image, a deck). A big system reads better as a few sheets (colour and type, then components by family) side by side than one very tall one. What reads well, top to bottom at 1440 wide:
 
 - **Colour by role**: every colour that carries a role, one swatch each: ground, surfaces, ink, heading and muted ink, each line colour (a border and a divider are two), the accent and its hover, the selected state, each status with its tint, a progress bar and its track. Labelled with its role, the code's name for it (a variable, or the selector and property that use it) and its hex. A plain-CSS app's roles are where its stylesheet uses each value (`color` on `:root` is the ink, `background` on `.primary` the accent). Sixty small swatches read as a dump of the stylesheet; a role left out reads as a gap.
 - **Type**: each size as a line of real text at that size, with its selector, size, weight and line height.
@@ -147,6 +206,8 @@ A frame whose write carried its picture (its answer's image) is looked at. Any o
 - Is it plainly the same app: for a variation or a state, the same type, colours, components and spacing; for a direction, the same data and working controls, led by its own idea in its own layout, type and palette?
 
 The page picture (`dessn_canvas_screenshot({ target: <page link>, region: 'fit', fresh: { waitMs: 30000 } })`) shows the set side by side, as the person will open it: send it in the same turn as the frames' picture, as the two don't depend on each other. Fix what is wrong with another write to that copy, then look again.
+
+A board is judged by what is on it: a piece the brief names (a fallback, a phone, the way back) that has no frame reads as not built, and a path it names that no step call has run reads as untested.
 
 ## Done means
 

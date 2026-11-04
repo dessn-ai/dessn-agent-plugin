@@ -14,8 +14,10 @@ On Dessn's MCP, what this skill's programs do:
 | `updateHtml` | `dessn_nodes_update` with `html` and `expectedRevision` |
 | `f.files`, `f.bash`, "code reads", counts in code | `dessn_files_list` with `grep`, `dessn_files_read` |
 | `page.snapshot`, a look at one element | `dessn_canvas_screenshot({ target: <frame>, steps: [{ read: <where> }, { shot: true }] })` answers its box, text and styles |
-| `page.evaluate`, a census across a page | Not on the MCP: a frame's own page code doesn't run from a call. Read the values off the code and with `steps`, and say on the board what you counted that way and what you didn't measure |
-| `canvas.point`, a pointer | `canvas.point` in a `dessn_program_run`, or a note beside the frame and an arrow with `color: 'amber'`, `heads: 'none'` |
+| `run(page, TEXT \| CENSUS \| TOKENS)`, `pixels(page)` | The same code on a `steps` call: `dessn_canvas_screenshot({ target: <frame>, route?, steps: [{ measure: 'text' }, { measure: 'census', selector, props }, { measure: 'tokens', names }, { measure: 'pixels', colours }] })` answers each as its step's `measured` |
+| `page.evaluate` of your own code, `sweep` | One `steps` call per route; code of your own doesn't run. Say on the board what you measured and what you didn't |
+| `canvas.point`, a pointer | A `pointer` item in `dessn_nodes_create`: `{ kind: 'pointer', frame, element, name, token }` (or `canvas.point` in a `dessn_program_run`) |
+| `caption:` on a frame | `caption` on its `dessn_nodes_create` item |
 | `skills.read` | The files in this skill's `references/`, or the resource `skill://dessn-audit/references/<file>`. `dessn_guide({ topic: 'audit' })` holds this file with board-anatomy.md and writing.md |
 
 An audit board answers one question about the product's design for whoever decides, with the product's own screens as evidence. From afar it reads as the question, the answer, the recommendation and where the answer shows most. Up close, each claim has its number, its source and its pixels. This file holds what every audit shares. Each kind of audit has its own file in references/, and so do the measuring, the layout and the writing. Read the ones your request needs, when you need them.
