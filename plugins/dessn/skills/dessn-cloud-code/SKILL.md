@@ -27,7 +27,7 @@ Every Dessn project holds its app's whole repository: the Library and every fram
 
 Writing a frame's code is open to the person's own agent on their own computer, signed in from it: Claude Code, Codex, Cursor or the Dessn CLI. A web connector (claude.ai, or a Claude Desktop custom connector) or an API key gets `forbidden` on step 6. Everything else above still works for them. For the change itself, either:
 
-- ask Dessn's design agent: `dessn_design_send` with the copy's page, the file and line you found, and the exact change. It costs the person's credits and takes a few minutes, and `dessn_design_status` follows it; or
+- ask Dessn's design agent: `dessn_design_send` with the copy's page, the file and line you found, and the exact change. A design run spends the person's credits and takes 3-10 minutes; when they asked for this change, their ask is the go-ahead. `dessn_design_status` follows it; or
 - tell the person a local client can make the edit itself (https://mcp.dessn.ai/install has each one's line).
 
 ## Good to know
