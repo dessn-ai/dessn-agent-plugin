@@ -12,7 +12,7 @@ with your Dessn account in your browser) and Dessn's design skills.
 - Move code between your local checkout and a frame with git, both ways.
 - Ask Dessn's own design agent for a change and follow its progress.
 
-The skills: `dessn` (start here), `dessn-design`, `dessn-board`, `dessn-sync` and `dessn-cloud-code`.
+The skills: `dessn` (start here), `dessn-design`, `dessn-board`, `dessn-audit`, `dessn-sync` and `dessn-cloud-code`.
 
 An agent on your own computer (Claude Code, Codex, Cursor) can also edit a frame's code directly and capture a live site as
 a frame. From claude.ai, Claude Desktop's connector or ChatGPT, your agent asks Dessn's design agent for those instead.

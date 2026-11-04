@@ -18,6 +18,7 @@ All of these, with copy buttons: https://mcp.dessn.ai/install
 - `dessn`: start here. Connecting, finding projects and pages, which tool does which job.
 - `dessn-design`: explore an app before designing, reuse its design system, make variations as frame copies, check them against real pictures.
 - `dessn-board`: boards of an app's surfaces, user flows with labelled arrows, diagrams from text, frames that fit.
+- `dessn-audit`: design audits and proposed design-system changes across screens.
 - `dessn-sync`: bring local code changes onto a Dessn frame.
 - `dessn-cloud-code`: work with the app's code in Dessn's cloud, with no local checkout.
 
