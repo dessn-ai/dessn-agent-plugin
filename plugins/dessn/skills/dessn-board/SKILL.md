@@ -73,6 +73,9 @@ Those gaps (1200 between columns, 1500 under a row) hold the arrows' labels, the
   strings it renders: one sign-in form's locale file says "Email is required" where the field prints "Required"), and in
   the page's saved picture (`dessn_canvas_screenshot` of its link). On one meeting-notes app, three plans of six
   named states by their page names, and the pages never said those words.
+- **A state the mocks can't show yet** (an empty list, a failing save, a loading state): a frame's mock `switches` (`dessn_canvas_get` lists them, and
+  `dessn_nodes_update` with `switches` keeps a frame at one; a staff preview) or a saved page's route usually reach it. Where none does, a copy whose mock you write shows it (skill dessn-design, "When the mock data has to act"). A file write on a frame answers the build it caused (compile, runtime and type
+  errors), so read that answer before you place the frame.
 - A frame the Library has no saved page for: make one frame of the app first, then `from: { frame: <its id or an earlier item's key>, state: '<route>' }` on the same sandbox, in the same batch. A state only clicks reach (an open dialog, a filled form, the error under a field): the Library may already hold it (a route with a state token); else press to it with `dessn_canvas_screenshot({ target: <a frame>, steps })` and end on `{ freeze: { proof: '<words it shows>' } }`, as the design agent's flow freezes each state its plan clicks to: its `frozen.state` is a step's `from: { frame, state }`, the app itself at that moment (a staff preview for now). Where a freeze isn't open or answers `restored: false`, a copy whose code shows it (`from: { frame, copy: true }`, then `dessn_files_write`), or a line in "Not shown". Each press answers what it changed, and one that matched nothing `instead`: what the page shows to press.
 - **See a state before it goes on the board.** `dessn_canvas_screenshot({ target: <a frame>, route: [<up to 12 routes>] })` pictures them together, and `frames: [<links>]` the frames you placed: a 404, an error screen, grey placeholders or a page cut off aren't the step, and the board's picture at fit is too small to tell. Such a step gets a mock or a copy that shows it, or a line in "Not shown". This is what the design agent's proof does for each of its frames.
 
@@ -150,7 +153,7 @@ Those gaps (1200 between columns, 1500 under a row) hold the arrows' labels, the
 }
 ```
 
-The answer lists each part with its key: a step's frame under its id, its caption `<id>:caption`, its disc `disc:<id>`, a lane's head `lane:<n>`, so you can change any of them afterwards.
+A step's `out` is drawn for you, as its caption's own grey "Way out: …" line, so its `caption` says what the page shows and not the way out again. The answer lists each part with its key: a step's frame under its id, its caption `<id>:caption`, its disc `disc:<id>`, a lane's head `lane:<n>`, so you can change any of them afterwards.
 
 The grid is the layout, so `dessn_nodes_arrange` isn't part of this: it would fold the lanes into one line. Take `dessn_canvas_screenshot({ target: <page>, region: 'fit', fresh: { waitMs: 120000 } })` once the frames have their pictures: its `issues` name what overlaps, each with the call that fixes it, and a `region` shows a part close up.
 
