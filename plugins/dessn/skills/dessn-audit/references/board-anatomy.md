@@ -63,7 +63,7 @@ Scope the variables to classes with prefixed names, because a note's :root is th
 
 Set near-white chips on the surface they live on, with a border in the product's border colour: on the canvas grey, a light-grey chip vanishes. Put dark chips on the product's dark surface.
 
-Show type in frames, never as a sample on a plate. A note can't load a font (the note tools refuse `@font-face`), and the product's font isn't loaded on the board under its own name, so a sample in a note shows the canvas's font or a fallback and misrepresents the product. A plate may give the family, size, line height, weight and class or token name as text. To show how text looks, frame a real screen where it's used, or a specimen page built from the product's own type styles in a clone of today's build and named as one (type-scale.md, "The specimen and its plate").
+Show type in frames, never as a sample on a plate. A note can't load a font (the note tools refuse `@font-face`), and the product's font isn't loaded on the board under its own name, so a sample in a note shows the canvas's font or a fallback and misrepresents the product. A plate may give the family, size, line height, weight and class or token name as text. To show how text looks, frame a real page where it's used, or a specimen page built from the product's own type styles in a clone of today's build and named as one (type-scale.md, "The specimen and its plate").
 
 ## The grid
 
@@ -94,12 +94,12 @@ The spine note holds, from the top:
 2. About 72 below, the `.claim`.
 3. About 48 below that, a `.lede` explainer of two to four plain sentences. Instructions for reading the evidence go here, never in the claim.
 
-The beat's evidence sits in the content columns to the right, starting at the same top, at most about two panels across. Further evidence wraps into rows beneath, so it stays close to the claim it proves. A beat that spans a full row (Shape) can run its evidence wider, in rows beside or under its head. Beats take single numerals and screens take two digits, so they never collide.
+The beat's evidence sits in the content columns to the right, starting at the same top, at most about two panels across. Further evidence wraps into rows beneath, so it stays close to the claim it proves. A beat that spans a full row (Shape) can run its evidence wider, in rows beside or under its head. Beats take single numerals and pages take two digits, so they never collide.
 
 ## Evidence rows
 
 - **Tier head.** A hairline, then the name and its range on one baseline (the Sizes table), then one `.lede` sentence on what the evidence in this tier has in common. It spans the content columns.
-- **Pairs.** Today on the left, proposed on the right, 120 apart, about two pairs to a row. Name the first frame by its index and a short screen name that fits over it at fit, about ten characters ("03 Editor"), and the second by what differs ("03 new", "03 dark"). A frame label is the largest text over the frames at fit, so it should say which screen it is, and a long one is cut off.
+- **Pairs.** Today on the left, proposed on the right, 120 apart, about two pairs to a row. Name the first frame by its index and a short page name that fits over it at fit, about ten characters ("03 Editor"), and the second by what differs ("03 new", "03 dark"). A frame label is the largest text over the frames at fit, so it should say which page it is, and a long one is cut off.
 - **Caption.** Use the `caption` option on the pair's first frame. It has three parts:
   - a head line: index, name and measure;
   - one or two sentences on what changes and what stays, with a yardstick;
@@ -111,12 +111,12 @@ The beat's evidence sits in the content columns to the right, starting at the sa
 await canvas.connect({ pageId, from: lookNote.id, to: { id: frameId, element: 'span:text-is("Submitted")' }, color: 'amber', heads: 'none', line: 'straight' })
 ```
 
-- **Index.** When the screens are ranked, list every screen under the beat's spine note in rank order, grouped by tier, under a 72 head: index, name, a bar and the measure. Add one sentence of method, and one line of small print for agreement, remainder and scope. When they aren't, skip it: the captions already name each screen.
+- **Index.** When the pages are ranked, list every page under the beat's spine note in rank order, grouped by tier, under a 72 head: index, name, a bar and the measure. Add one sentence of method, and one line of small print for agreement, remainder and scope. When they aren't, skip it: the captions already name each page.
 
 ## Findings boards
 
 A findings board ranks instances by severity instead of pairing today with proposed. The frames are:
-- single frames, worst first, each one frame wide (1,440) with about 700 between, so pointer notes fit beside the captions, and each named by its index and screen ("03 Reports"). Wrap them into rows about as wide as two pairs, so the worst stay near the beat's head; or
+- single frames, worst first, each one frame wide (1,440) with about 700 between, so pointer notes fit beside the captions, and each named by its index and page ("03 Reports"). Wrap them into rows about as wide as two pairs, so the worst stay near the beat's head; or
 - pairs of the same route that differ in one thing, such as light and dark, laid out as proposal pairs.
 
 The legend describes the frames the board has. The recommendation's second part is "Fix first" and the fix that clears the most, or nothing when no fix comes first. A caption head carries the ranked measure ("03 Reports 16% of text too faint"). Put a pointer on each instance the caption names. With single frames, the gutter to a frame's right (`side: 'right'`) is the usual place for its notes.

@@ -8,10 +8,10 @@ Contents: 1 Before you measure · 2 Running code in a page · 3 Token values and
 
 SKILL.md, section 3, has the evidence rules. In a program they mean:
 - **Measure before you arrange.** Measure each route you need through the frame you build from with `sweep(frameId, routes, fn)` (section 2), and rank. Only then place frames, each in its ranked slot. A sweep loads two pages at a time, each closed when done, and opens a route whose page or browser was lost once more. Its pages hold the preview login only, not a login or setting made in the frame's page; set one up in `fn`.
-- **Measure by role.** A surface is measured by visible-pixel share (pixels.md). Text, links, icons and buttons are few pixels, so count the characters or elements that carry them and check their contrast (sections 4 and 5), which takes seconds. When the count comes out the same on every screen, say so once rather than rank on it.
+- **Measure by role.** A surface is measured by visible-pixel share (pixels.md). Text, links, icons and buttons are few pixels, so count the characters or elements that carry them and check their contrast (sections 4 and 5), which takes seconds. When the count comes out the same on every page, say so once rather than rank on it.
 - **Inputs.** Frame ids are your frames' ids, routes are the app's paths, and colours are hex, as `TOKENS` returns them.
-- **Reduce in the program.** A program's answer holds about 40,000 characters. Merge the screens' rows in the program and return what the board will quote. Keep those rows, so the opening, captions and tables quote the same numbers.
-- **One failing screen shouldn't lose the pass.** A sweep answers a failed route as `{ ok: false, error }` and goes on. List what failed under "What we didn't check".
+- **Reduce in the program.** A program's answer holds about 40,000 characters. Merge the pages' rows in the program and return what the board will quote. Keep those rows, so the opening, captions and tables quote the same numbers.
+- **One failing page shouldn't lose the pass.** A sweep answers a failed route as `{ ok: false, error }` and goes on. List what failed under "What we didn't check".
 - **Emulation lasts one program.** A setting made with `Emulation.*` ends when the program that set it ends.
 
 ## 2. Running code in a page
@@ -176,7 +176,7 @@ const props = ['height', 'border-radius', 'padding-left', 'font-size', 'font-wei
 return sweep(frameId, routes.map(r => r.route), page => run(page, CENSUS, { selector: 'button, [role=button], a[class*=btn], input[type=submit]', props, shared: '[data-slot=button]' }))
 ```
 
-Merge the screens' rows by `values` in the program. Values 1 px apart are often one variant rendered differently (a border, or zoom), so check before calling them two. Say what the selector caught and what it left out.
+Merge the pages' rows by `values` in the program. Values 1 px apart are often one variant rendered differently (a border, or zoom), so check before calling them two. Say what the selector caught and what it left out.
 
 ## 6. Describing a colour
 
@@ -235,6 +235,6 @@ return { uses, hardCoded: await count(copies(OLD), skip), where: where.stdout.sl
 ## 8. Reporting a number
 
 - **Round so a fail never reads as a pass.** Truncate contrast to two decimals, so 4.499 is "4.49 : 1", a fail. Give shares of 10% or more as whole numbers, and shares under 10% to one decimal.
-- **Give every number its yardstick in the sentence:** "4.5 : 1 is the minimum for body text"; "no other screen we compared has more"; "of the 122 buttons we measured on 12 screens".
+- **Give every number its yardstick in the sentence:** "4.5 : 1 is the minimum for body text"; "no other page we compared has more"; "of the 122 buttons we measured on 12 pages".
 - **State the method once,** in a footnote under the index or the plate, rather than in every caption.
-- **Name the scope beside the claim:** "…so the percentages only cover these screens".
+- **Name the scope beside the claim:** "…so the percentages only cover these pages".

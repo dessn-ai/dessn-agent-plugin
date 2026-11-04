@@ -1,8 +1,8 @@
-# General review: findings across screens
+# General review: findings across pages
 
 Use this when the ask is a review that isn't about a single property. Examples: "audit our settings pages", "what feels inconsistent", "critique the onboarding", "is this area polished enough to ship". It is also the fallback when no other kind fits. When a theme of the review turns out to be one property, such as colour, type, spacing, one component or contrast, the SKILL.md's routing table names that kind's file. Read it for that theme's measure.
 
-Contents: The question and the lens · Walking the screens · A finding · Grouping and ranking · The beats · Caveats · Done when
+Contents: The question and the lens · Walking the pages · A finding · Grouping and ranking · The beats · Caveats · Done when
 
 ## The question and the lens
 
@@ -17,17 +17,17 @@ The opening's value image is the worst finding's evidence as values (a count, a 
 
 The answer gives the verdict and the few themes that explain most of the findings. For example: "Not yet. Three things make it feel unfinished: two different form styles, empty states with no next step, and error messages in developer language. All three are fixable in the shared components."
 
-## Walking the screens
+## Walking the pages
 
-- **Write the scope list first:** the screens, and the states that matter for the question (empty, error, loading, long content, permission-limited). Each ends up framed, or listed under "What we didn't check".
-- **Open every screen in one pass.** For each one, read a text outline (`page.snapshot`) and a picture, and run the censuses the lens needs (measuring.md).
-- **Compare like with like.** Put the same pattern side by side across screens, such as page headers, primary actions, empty states and form layouts. Inconsistencies show up there, not one screen at a time.
+- **Write the scope list first:** the pages, and the states that matter for the question (empty, error, loading, long content, permission-limited). Each ends up framed, or listed under "What we didn't check".
+- **Open every page in one pass.** For each one, read a text outline (`page.snapshot`) and a picture, and run the censuses the lens needs (measuring.md).
+- **Compare like with like.** Put the same pattern side by side across pages, such as page headers, primary actions, empty states and form layouts. Inconsistencies show up there, not one page at a time.
 - **Read the code behind a suspicious spot** before calling it a bug. It may be a deliberate variant, a feature flag or mock data.
 
 ## Window sizes and content
 
 - **Other window sizes.** Frames stay at their own size, about 1440 × 900, so the board's frames show that size. To measure narrower, open a page, set `Emulation.setDeviceMetricsOverride` (for example 390 × 844, mobile) and run the censuses or read `page.snapshot` in the same program, since the setting ends with it. Report what breaks (horizontal scroll, clipped or overlapping text, controls under 24 px) with counts. Say on the board that the frames show desktop and the narrow findings come from emulated pages.
-- **Content that stretches a screen.** Long names, other languages, empty, error and loading states. Set the data or state the screen needs through its mock data (dessn-mocks), take a state and make a frame of it, or list it under what you didn't check.
+- **Content that stretches a page.** Long names, other languages, empty, error and loading states. Set the data or state the page needs through its mock data (dessn-mocks), take a state and make a frame of it, or list it under what you didn't check.
 
 ## A finding
 
@@ -40,13 +40,13 @@ Each finding has:
   - it blocks a task;
   - it confuses or slows someone down;
   - it's polish;
-- **the fix:** where it lives (a token, a shared component, one screen).
+- **the fix:** where it lives (a token, a shared component, one page).
 
 Say what works too. A review that only lists problems reads as a complaint, and the good patterns are the fix for the bad ones.
 
 ## Grouping and ranking
 
-Group the findings into three to five themes, each headed by a claim ("Empty states leave people with no next step"). Rank the themes by severity, then by reach: how many screens and how often people see them. Within a theme, rank instances the same way, and always frame the worst one. Say the counting rule once on the board ("counted per screen, not per instance").
+Group the findings into three to five themes, each headed by a claim ("Empty states leave people with no next step"). Rank the themes by severity, then by reach: how many pages and how often people see them. Within a theme, rank instances the same way, and always frame the worst one. Say the counting rule once on the board ("counted per page, not per instance").
 
 ## The beats
 
@@ -60,7 +60,7 @@ Group the findings into three to five themes, each headed by a claim ("Empty sta
 ## Caveats
 
 - **A critique of a mock state is a critique of the mock.** Check that what you're judging is the product's behaviour, not missing data.
-- **Absolutes need a search.** "Nothing suggests what the product can do" fails when a subtitle on the same screen does.
+- **Absolutes need a search.** "Nothing suggests what the product can do" fails when a subtitle on the same page does.
 - **Keep the lens.** Switching from "consistency with the system" to personal taste halfway makes the findings incomparable.
 
 ## Done when

@@ -60,7 +60,7 @@ const LEFTS = String.raw`({ within = 'main, [role=main], body' } = {}) => {
 
 ## A proposal
 
-Build, measure, then place, as palette-change.md's "Making the proposed side" does. Clone one frame of today's build and change the spacing tokens or the component's padding in the clone, the way it would ship. Measure every route on both builds (`sweep(frameId, routes, fn)`, measuring.md), then place the pairs in rank order with explodeState at each route. Rank by how much each screen gains or loses: rows that fit, or the height of the first screenful's content.
+Build, measure, then place, as palette-change.md's "Making the proposed side" does. Clone one frame of today's build and change the spacing tokens or the component's padding in the clone, the way it would ship. Measure every route on both builds (`sweep(frameId, routes, fn)`, measuring.md), then place the pairs in rank order with explodeState at each route. Rank by how much each page gains or loses: rows that fit, or the height of the first screenful's content.
 
 ## The plate
 
@@ -82,7 +82,7 @@ Show the scale as bars, each labelled with its value and the number of uses foun
 
 ## Done when
 
-- The scale is shown, and the share on scale is measured on every screen in scope.
+- The scale is shown, and the share on scale is measured on every page in scope.
 - Every off-scale group has a count and a source.
 - Pointers name both sides of a gap.
 - A proposal's pairs come from one build and differ only in spacing.

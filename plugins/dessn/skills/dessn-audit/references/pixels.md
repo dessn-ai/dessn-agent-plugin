@@ -1,16 +1,16 @@
 # Visible-pixel share
 
-Use this when a number on the board is how much of a screen a colour paints: a palette change's ranking, light patches in a dark theme, or the old colour left over after an edit. It needs `run`, `pageOf` and `sweep` from measuring.md.
+Use this when a number on the board is how much of a page a colour paints: a palette change's ranking, light patches in a dark theme, or the old colour left over after an edit. It needs `run`, `pageOf` and `sweep` from measuring.md.
 
 Contents: Why pixels · The code · Measuring before you place · Reading the result · Limits
 
 ## Why pixels
 
-Box areas overstate a colour, because children paint over it: one board summed the boxes of elements with a grey background and called a screen 100% grey where 49% showed. Count the pixels in the page's picture that are exactly the colour instead. That counts only what is painted and visible, leaving out the white cards, text, borders and images on top.
+Box areas overstate a colour, because children paint over it: one board summed the boxes of elements with a grey background and called a page 100% grey where 49% showed. Count the pixels in the page's picture that are exactly the colour instead. That counts only what is painted and visible, leaving out the white cards, text, borders and images on top.
 
 ## The code
 
-`PIXELS` decodes one band of the page's picture inside the page and counts it: each colour's pixels, the elements that paint them, the colours one colour touches (`meets`), and the pixels at least as light as `bright` (a luminance from 0 to 1), whatever their colour. `pixels` captures the page in bands and adds them up. For each colour it returns the share of the screen and the elements that paint most of it (`paintedBy`: selector, text, box and share).
+`PIXELS` decodes one band of the page's picture inside the page and counts it: each colour's pixels, the elements that paint them, the colours one colour touches (`meets`), and the pixels at least as light as `bright` (a luminance from 0 to 1), whatever their colour. `pixels` captures the page in bands and adds them up. For each colour it returns the share of the page and the elements that paint most of it (`paintedBy`: selector, text, box and share).
 
 It works in bands because every call's arguments and answer go into the program's replay log. One value over 1 MB fails the whole program, not just the call, with "…is too large to record durably". A band of about 200,000 pixels stays under that even for a photo.
 
@@ -88,7 +88,7 @@ Colours are hex as `TOKENS` returns them (`'#f4f4f4'`). An `rgb()` string matche
 
 ## Measuring before you place
 
-Measure every screen before any frame goes up, so the frames are placed once and already ranked. Measure each route through the frame you build from: today's side from one frame of today's build, and the proposed side from the clone that carries the change (the kind file says how to make it). The two sides run together, two pages a side (a sweep's own pace); their pages are spread so that no more than two boot in one browser at a time. A route whose page or browser was lost is opened once more; a screen that still fails on either side is reported rather than losing the pass.
+Measure every page before any frame goes up, so the frames are placed once and already ranked. Measure each route through the frame you build from: today's side from one frame of today's build, and the proposed side from the clone that carries the change (the kind file says how to make it). The two sides run together, two pages a side (a sweep's own pace); their pages are spread so that no more than two boot in one browser at a time. A route whose page or browser was lost is opened once more; a page that still fails on either side is reported rather than losing the pass.
 
 ```js
 // routes: [{ name, route }]; todayId and cloneId are frame ids; OLD and NEW are hex.
@@ -117,6 +117,6 @@ Read the result before you rank:
 
 - This measures the first screenful, and the footnote should say so.
 - A colour at partial opacity, blended or in a gradient won't match exactly. A dialog's backdrop changes every pixel under it. Check once that a known chip reads back exactly.
-- A colour that paints few pixels, such as an accent on one button per screen, a link or text, gives shares too small to rank screens by. Count the elements or characters that carry it instead (measuring.md, sections 4 and 5).
+- A colour that paints few pixels, such as an accent on one button per page, a link or text, gives shares too small to rank pages by. Count the elements or characters that carry it instead (measuring.md, sections 4 and 5).
 - A tint of the colour (`bg-primary/10`, `color-mix`) is a different colour here. Count tints in code instead, and list them as "changes too, not in the pixel share".
 - If a program fails with "too large to record durably", make the bands smaller: change 200,000 to 100,000.

@@ -20,7 +20,7 @@ Contents: The title and the answer · Heads carry the argument · Plain words ·
 
 **A head is a claim the evidence under it proves, not a label.**
 - Before: "Breaks / Off / Holds"
-- After: "Text is hard to read on three screens" / "Two screens keep bright light-mode panels" / "Five screens read well in dark"
+- After: "Text is hard to read on three pages" / "Two pages keep bright light-mode panels" / "Five pages read well in dark"
 
 **Size the claim to its evidence.**
 - Before: "4 What to watch out for. A few places could keep the old grey."
@@ -30,7 +30,7 @@ Contents: The title and the answer · Heads carry the argument · Plain words ·
 - Before: "One shared button, four sizes, one corner." (It sat above a table with corners of 6 and 8.)
 - After: "One shared button, in four sizes and two corner radii."
 
-**Name tiers by what the reader sees,** with the measure beside the name: "Most noticeable · about half the screen or more", not "Tier 1 · >40%".
+**Name tiers by what the reader sees,** with the measure beside the name: "Most noticeable · about half the page or more", not "Tier 1 · >40%".
 
 ## Plain words
 
@@ -64,14 +64,14 @@ Put the plain word in the sentence, and the code name in small print, unless the
 
 **Show the denominator on the board.**
 - Before: "4 of 122 buttons are off-size"
-- After: "4 of the 122 buttons we measured on 12 screens are off-size. The 122 include nav tabs and list rows."
+- After: "4 of the 122 buttons we measured on 12 pages are off-size. The 122 include nav tabs and list rows."
 
-**Rank on one measure.** A screen ranked by failing text can't be headlined by its bright area.
+**Rank on one measure.** A page ranked by failing text can't be headlined by its bright area.
 
 ## Caveats and hedges
 
 **Put each caveat beside its claim.** A limit stated only in the chat reply isn't on the board.
-- After: "The percentages cover the first screenful of these ten screens only."
+- After: "The percentages cover the first screenful of these ten pages only."
 
 **Calibrate hedges, and pair each one with its test.** "The shared library probably wins, because it loads after the app's file. Step 1 in section 5 shows how to check."
 
@@ -100,4 +100,4 @@ Before replying, read the board as text, from the board itself rather than from 
 4. **Check every reference.** "The first three" must match how the options are lettered, and "section 4" must be section 4.
 5. **Check the scope list.** Every item on it is framed, or listed under "What we didn't check".
 6. **Check the recommendation.** The recommendation box, the options and the steps must say the same thing. Read the answer against them last, and change whichever is wrong, so the opening can't disagree with them.
-7. **Check names and small words.** Each screen keeps one name everywhere: frame, caption, index, stats and reply. Counts written as words ("ten screens", "three places") match what is on the board, and no tool words or leftover markup show (a stray `rg`, a `</code>` in the text).
+7. **Check names and small words.** Each page keeps one name everywhere: frame, caption, index, stats and reply. Counts written as words ("ten pages", "three places") match what is on the board, and no tool words or leftover markup show (a stray `rg`, a `</code>` in the text).

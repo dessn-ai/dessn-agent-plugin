@@ -1,6 +1,6 @@
 ---
 name: dessn-audit
-description: Design audits and proposed design-system changes on the canvas, with the product's real screens as evidence, such as a new colour, grey or colour token across surfaces, dark mode or theming, type scale, spacing and layout rhythm, component consistency (buttons, inputs, cards), contrast and accessibility, or a general review of polish across screens and window sizes. Use when the person asks what a change would look like across screens, whether something is consistent or holds up ("how does dark mode hold up", "are our buttons consistent"), or to review tokens, colours, type or spacing across the product. Not for mapping a user flow (dessn-board), designing one screen, or a page that only shows the design system (dessn-design).
+description: Design audits and proposed design-system changes on the canvas, with the product's real pages as evidence, such as a new colour, grey or colour token across pages, dark mode or theming, type scale, spacing and layout rhythm, component consistency (buttons, inputs, cards), contrast and accessibility, or a general review of polish across pages and window sizes. Use when the person asks what a change would look like across pages, whether something is consistent or holds up ("how does dark mode hold up", "are our buttons consistent"), or to review tokens, colours, type or spacing across the product. Not for mapping a user flow (dessn-board), designing one page, or a page that only shows the design system (dessn-design).
 ---
 
 # Design audits on the canvas
@@ -15,12 +15,13 @@ On Dessn's MCP, what this skill's programs do:
 | `f.files`, `f.bash`, "code reads", counts in code | `dessn_files_list` with `grep`, `dessn_files_read` |
 | `page.snapshot`, a look at one element | `dessn_canvas_screenshot({ target: <frame>, steps: [{ read: <where> }, { shot: true }] })` answers its box, text and styles |
 | `run(page, TEXT \| CENSUS \| TOKENS)`, `pixels(page)` | The same code on a `steps` call: `dessn_canvas_screenshot({ target: <frame>, route?, steps: [{ measure: 'text' }, { measure: 'census', selector, props }, { measure: 'tokens', names }, { measure: 'pixels', colours }] })` answers each as its step's `measured` |
+| `page.stateSnapshot`, a state clicked to | `steps` that press to it, ending on `{ freeze: { proof } }`: its `frozen.state` is a frame's `from: { frame, state }` (a staff preview) |
 | `page.evaluate` of your own code, `sweep` | One `steps` call per route; code of your own doesn't run. Say on the board what you measured and what you didn't |
 | `canvas.point`, a pointer | A `pointer` item in `dessn_nodes_create`: `{ kind: 'pointer', frame, element, name, token }` (or `canvas.point` in a `dessn_program_run`) |
 | `caption:` on a frame | `caption` on its `dessn_nodes_create` item |
 | `skills.read` | The files in this skill's `references/`, or the resource `skill://dessn-audit/references/<file>`. `dessn_guide({ topic: 'audit' })` holds this file with board-anatomy.md and writing.md |
 
-An audit board answers one question about the product's design for whoever decides, with the product's own screens as evidence. From afar it reads as the question, the answer, the recommendation and where the answer shows most. Up close, each claim has its number, its source and its pixels. This file holds what every audit shares. Each kind of audit has its own file in references/, and so do the measuring, the layout and the writing. Read the ones your request needs, when you need them.
+An audit board answers one question about the product's design for whoever decides, with the product's own pages as evidence. From afar it reads as the question, the answer, the recommendation and where the answer shows most. Up close, each claim has its number, its source and its pixels. This file holds what every audit shares. Each kind of audit has its own file in references/, and so do the measuring, the layout and the writing. Read the ones your request needs, when you need them.
 
 ## 1. Pick the kind
 
@@ -28,25 +29,25 @@ Pick the row that names the property the person wants to decide about, whatever 
 
 | The person asks about… | Kind | Read |
 |---|---|---|
-| a new or changed colour: a grey, brand colour, accent, tint or colour token ("what would this grey look like across our screens", "try this hex") | palette change (proposal) | `references/palette-change.md` |
+| a new or changed colour: a grey, brand colour, accent, tint or colour token ("what would this grey look like across our pages", "try this hex") | palette change (proposal) | `references/palette-change.md` |
 | whether a theme holds up (dark mode, a high-contrast theme, a second brand theme), or what a new theme would look like | theme (findings, or a proposal) | `references/dark-mode.md` |
 | type: sizes, weights, fonts, line height, or a new type scale or font | type (findings or proposal) | `references/type-scale.md` |
 | spacing, padding, corner radius, density, alignment, layout rhythm, or a new value for one of them | spacing (findings or proposal) | `references/spacing.md` |
-| one component or pattern across screens, including its own type, spacing and colours: buttons, inputs, cards, tables, tabs, icons, empty states | consistency (findings) | `references/consistency.md` |
+| one component or pattern across pages, including its own type, spacing and colours: buttons, inputs, cards, tables, tabs, icons, empty states | consistency (findings) | `references/consistency.md` |
 | contrast, readable text, keyboard focus, target size, screen-reader names, WCAG | accessibility (findings) | `references/accessibility.md` |
-| anything else across screens, or nothing above fits: polish, "what feels off", a critique of an area, other window sizes, content that stretches a screen (long names, empty, error and loading states), elevation, shadows or motion. Say which lens you chose in your first update. | general review (findings) | `references/general-review.md` |
+| anything else across pages, or nothing above fits: polish, "what feels off", a critique of an area, other window sizes, content that stretches a page (long names, empty, error and loading states), elevation, shadows or motion. Say which lens you chose in your first update. | general review (findings) | `references/general-review.md` |
 
 How to read the table:
 - **Two rows fit.** Read both kind files. The one that names the decision sets the board's question, and the other adds its measure and a beat. For example, a new grey that must hold up in dark mode reads palette-change.md and dark-mode.md.
 - **An explain ask.** "How does our type scale work?" or "document our colours for the team" asks for no verdict. Use the kind file's yardstick, evidence and Today beat, under a title such as "How does Acme's type scale work?". Skip the verdict, risks and options unless the evidence turns up a problem.
-- **One screen.** When the scope is a single screen, its states, tabs and regions become the scope list, and the ranking unit is the cause or the region.
-- **Neighbouring skills.** A journey across screens belongs to dessn-board's "A user flow". A screen that can't reach the state you need is a copy whose code shows it (dessn-design).
+- **One page.** When the scope is a single page, its states, tabs and regions become the scope list, and the ranking unit is the cause or the region.
+- **Neighbouring skills.** A journey across pages belongs to dessn-board's "A user flow". A page that can't reach the state you need is a copy whose code shows it (dessn-design).
 
 ## 2. Read in steps
 
 A program's answer holds about 40,000 characters. Read in steps, each in one program that returns the joined text itself:
 1. **The kind file with `references/measuring.md`,** in the same program that puts the question up as the board's title. The title needs only the kit's `.title` class and section 4 below.
-2. **Before you measure or place anything else:** `references/board-anatomy.md` and `references/writing.md`, with `references/pixels.md` when you measure how much of a screen a colour paints (a surface, or light patches in a dark theme). The three fit in one read.
+2. **Before you measure or place anything else:** `references/board-anatomy.md` and `references/writing.md`, with `references/pixels.md` when you measure how much of a page a colour paints (a surface, or light patches in a dark theme). The three fit in one read.
 3. **A second kind file,** when two rows fit, in a read of its own.
 
 ```js
@@ -57,10 +58,10 @@ return read(['references/palette-change.md', 'references/measuring.md'])
 ## 3. Evidence first
 
 - **Follow each value to what a frame renders.** A token file says what a value should be. A runtime copy, a theme wrapper or a value written straight into the code can beat it, so resolve the value in the page.
-- **Keep a scope list** of the screens, states and themes the question covers. Each one ends up on the board or under "What we didn't check", and the worst case always appears.
-- **Measure before you arrange.** Measure every screen through the frames you build from, rank them, then place each frame once, in its ranked slot. One ranking uses one declared measure. A second measure is a second column, never a re-sort.
-- **Measure what is seen, with the measure the value's role calls for.** A surface is measured by the pixels that show, because cards paint over its boxes and box areas overstate it (pixels.md). Text, links, icons and small fills such as buttons are few pixels, so count the elements or characters that carry them and check their contrast; that takes seconds. A value that plays both roles, such as an accent that also fills a header, is measured both ways. When the measure doesn't separate the screens (one main button on each), say so in a line rather than ranking on noise, and spend the time on the evidence that decides the question, such as the states and the text on the value.
-- **Give every number what it counts and a yardstick,** such as "64% of the screen" or "4.5 : 1 is the minimum for body text", so a fail never reads as a pass.
+- **Keep a scope list** of the pages, states and themes the question covers. Each one ends up on the board or under "What we didn't check", and the worst case always appears.
+- **Measure before you arrange.** Measure every page through the frames you build from, rank them, then place each frame once, in its ranked slot. One ranking uses one declared measure. A second measure is a second column, never a re-sort.
+- **Measure what is seen, with the measure the value's role calls for.** A surface is measured by the pixels that show, because cards paint over its boxes and box areas overstate it (pixels.md). Text, links, icons and small fills such as buttons are few pixels, so count the elements or characters that carry them and check their contrast; that takes seconds. A value that plays both roles, such as an accent that also fills a header, is measured both ways. When the measure doesn't separate the pages (one main button on each), say so in a line rather than ranking on noise, and spend the time on the evidence that decides the question, such as the states and the text on the value.
+- **Give every number what it counts and a yardstick,** such as "64% of the page" or "4.5 : 1 is the minimum for body text", so a fail never reads as a pass.
 - **Back every absolute with a search or a render.** "Dark mode is unaffected" and "already handled" are true only after one. Otherwise, narrow the claim.
 - **Accuracy comes first,** then speed, then visible progress. A slower true board beats a fast one that contradicts itself.
 
@@ -78,7 +79,7 @@ The board runs through these beats. Merge any beat that adds nothing. The board'
 - **4 What to watch out for.** Put each risk under an action kicker (Check first, Fix alongside, Tidy up, Check after shipping) with its test. End with what the board doesn't prove.
 - **5 What we recommend.** List the options from smallest to largest, each with its cost, and mark the one you recommend. Put the ask in one line. Number the steps so someone who didn't see the chat can run them.
 
-Beats take single numerals and screens two digits, so they never collide. Heads carry the argument: each head is a claim the evidence under it proves, never a label.
+Beats take single numerals and pages two digits, so they never collide. Heads carry the argument: each head is a claim the evidence under it proves, never a label.
 
 ## 5. How the notes look
 
@@ -93,7 +94,7 @@ A board looks considered when a few habits hold in every note and plate, whateve
 ## 6. Build it where they can watch
 
 1. **Put the question up as the title in your first program on the board,** the one that reads the kind file. Then research in parallel: the code reads, the token values and the counts.
-2. **Place the Today beat in the program that starts the measuring,** with what the code reads already give: its head, its claim unless it waits on a count, and plates of the definition, ramp, token pairs or reach. The person sees the work begin, at no cost in time. A census or ratio the beat quotes from the pages goes in with `updateHtml` when its counts land. Leave room above it for the opening (board-anatomy.md, "Room"), so nothing moves when the answer arrives. Then measure every screen in scope, and rank where the measure separates them. For a proposal, make the proposed build earlier, in the program that reads board-anatomy.md (the kind file says how), so the measuring covers both sides.
+2. **Place the Today beat in the program that starts the measuring,** with what the code reads already give: its head, its claim unless it waits on a count, and plates of the definition, ramp, token pairs or reach. The person sees the work begin, at no cost in time. A census or ratio the beat quotes from the pages goes in with `updateHtml` when its counts land. Leave room above it for the opening (board-anatomy.md, "Room"), so nothing moves when the answer arrives. Then measure every page in scope, and rank where the measure separates them. For a proposal, make the proposed build earlier, in the program that reads board-anatomy.md (the kind file says how), so the measuring covers both sides.
 3. **Write the opening once the measures are in:** the short answer, its numbers and the recommendation. You know the answer then, and the top of the board shouldn't stay a bare title for most of the run. The reconcile read checks it against everything beneath it.
 4. **Place the rest in reading order, one beat or tier per program,** on a grid planned with room for the notes still to come: its head, then its frames in their ranked slots with caption heads (the `caption` option), with their captions and pointers filled in from the measures. Each part of the story then arrives whole, rather than all the frames, then all the pointers, then all the words.
 5. **View the board after the first beat of evidence,** and fix its `issues` in place, so the beats after it don't repeat them.
@@ -103,13 +104,13 @@ A board looks considered when a few habits hold in every note and plate, whateve
 ## References
 
 Kinds (read one with measuring.md):
-- `references/palette-change.md` (18k): a proposed colour across screens, as close to a finished board as a method gets. It covers the question, what the value's role decides, the evidence in order, how to make and measure the proposed side, ranking and tiers, every beat's plates, captions, pointers, risks, options and steps, and a "what great looks like" check.
+- `references/palette-change.md` (18k): a proposed colour across pages, as close to a finished board as a method gets. It covers the question, what the value's role decides, the evidence in order, how to make and measure the proposed side, ranking and tiers, every beat's plates, captions, pointers, risks, options and steps, and a "what great looks like" check.
 - `references/dark-mode.md` (9k): whether a theme holds up, or a new theme: how it switches, token pairs, text contrast, light leaks and their causes.
 - `references/type-scale.md` (8k): type consistency, or a new scale or font.
 - `references/spacing.md` (6k): spacing, radius, density and alignment, or a new value for one of them.
-- `references/consistency.md` (6k): one component or pattern across screens: the census, the yardstick and variants.
+- `references/consistency.md` (6k): one component or pattern across pages: the census, the yardstick and variants.
 - `references/accessibility.md` (6k): contrast, text size, focus, target size and names.
-- `references/general-review.md` (6k): a review across screens against a stated lens, window sizes and content included.
+- `references/general-review.md` (6k): a review across pages against a stated lens, window sizes and content included.
 
 Shared:
 - `references/measuring.md` (19k): tested page code for token values and which source wins, contrast and the text census, the component census, describing a colour, and counts in code.

@@ -1,6 +1,6 @@
 # Type audit: sizes, weights, fonts and a type scale
 
-Use this when the question is about the product's type. That covers whether its sizes, weights, fonts and line heights are consistent (findings), or what a new type scale or font would look like across screens (a proposal). It is not for one component's label (consistency.md) or for text contrast (accessibility.md). The census code is in measuring.md, and the type-only checks are below.
+Use this when the question is about the product's type. That covers whether its sizes, weights, fonts and line heights are consistent (findings), or what a new type scale or font would look like across pages (a proposal). It is not for one component's label (consistency.md) or for text contrast (accessibility.md). The census code is in measuring.md, and the type-only checks are below.
 
 Contents: The question · The yardstick · Evidence · A proposal · The specimen and its plate · The beats · Caveats · Done when
 
@@ -15,7 +15,7 @@ Stats that work here:
 - the number of distinct sizes found, against the scale's steps;
 - body text's characters per line, against a comfortable 45–75.
 
-The opening's value image is the type in a frame, a real screen or the specimen (The specimen and its plate), with its plate beside it: each role's size, weight and line height, and the off-scale sizes listed in grey, as numbers. For a proposal, frame today's type and the proposed type side by side.
+The opening's value image is the type in a frame, a real page or the specimen (The specimen and its plate), with its plate beside it: each role's size, weight and line height, and the off-scale sizes listed in grey, as numbers. For a proposal, frame today's type and the proposed type side by side.
 
 ## The yardstick
 
@@ -23,7 +23,7 @@ The yardstick is the scale the code defines: font-size, line-height and weight t
 
 ## Evidence
 
-- **Text census.** Run `TEXT` (measuring.md) on every screen with `{ by: 'type', limit: 200 }`, so every size comes back, rare ones included, with its weight, family, line height and characters. Merge the screens in the program and mark each size on or off the scale. Off-scale text in a few repeated places points to one component, so find it in code. The census covers the first screenful unless you pass `viewportOnly: false`; say which in the footnote.
+- **Text census.** Run `TEXT` (measuring.md) on every page with `{ by: 'type', limit: 200 }`, so every size comes back, rare ones included, with its weight, family, line height and characters. Merge the pages in the program and mark each size on or off the scale. Off-scale text in a few repeated places points to one component, so find it in code. The census covers the first screenful unless you pass `viewportOnly: false`; say which in the footnote.
 - **Fonts actually rendered.** A family the CSS asks for isn't always the one that loaded. If the sandbox lacks a font file, the frames show a fallback. Check before judging letterforms:
 
 ```js
@@ -41,7 +41,7 @@ const LINES = String.raw`() => [...document.querySelectorAll('p, li, dd, td')].m
 }).filter(row => row.lines > 1 && row.text)`
 ```
 
-- **Hierarchy per screen.** On each screen, check that the page title, section heads and body step down clearly. Two heads one step apart read as one level.
+- **Hierarchy per page.** On each page, check that the page title, section heads and body step down clearly. Two heads one step apart read as one level.
 - **Weights.** A weight the font doesn't have renders as the nearest one it does, so a 500 can look identical to a 400 or a 600. Check the loaded faces before calling two weights different.
 - **Fonts and line heights.** The census rows carry both. Count the families in use and the line heights per size: one size set at two line heights is a finding.
 
@@ -54,8 +54,8 @@ Build, measure, then place, as palette-change.md's "Making the proposed side" do
 For type, the evidence is a frame and the plate is the values note beside it. A note sets its text in the canvas's font: the note tools refuse `@font-face`, and the product's font isn't loaded on the board under its own name, so a sample line in a note shows the wrong typeface and misrepresents the product. The plate gives the values as text, in small print: each role's family, size, line height, weight and class or token name, with any off-scale sizes listed in grey.
 
 Show the type in a frame, in one of two ways:
-- **A real screen** where the roles are used, with a pointer on each role its caption names. It is the strongest evidence, because it is the product as people see it.
-- **A specimen page,** when no one screen shows the whole scale: a route that sets one line of real copy per role with the product's own type classes, tokens or text components. Name its frame and caption as a specimen ("Type specimen, built for this board"), so nobody takes it for a product screen.
+- **A real page** where the roles are used, with a pointer on each role its caption names. It is the strongest evidence, because it is the product as people see it.
+- **A specimen page,** when no one page shows the whole scale: a route that sets one line of real copy per role with the product's own type classes, tokens or text components. Name its frame and caption as a specimen ("Type specimen, built for this board"), so nobody takes it for a product page.
 
 A specimen page is only evidence if it renders in the product's real fonts, and it shouldn't change today's build:
 - **Build it in a clone.** Clone one frame of today's build (cloneFrame, as in A proposal), add the route in the clone the way the app adds routes (dessn-mocks), and frame that route from the clone.
@@ -75,12 +75,12 @@ For a proposal, add the specimen route before making the proposed build, then cl
 ## Caveats
 
 - **Say when a frame shows a stand-in font.** A board once compared a stand-in serif without saying so.
-- **Check each claim against every frame.** "Serif titles on every page" sat above a screen whose title was sans.
+- **Check each claim against every frame.** "Serif titles on every page" sat above a page whose title was sans.
 - **Sizes in rem follow the root size.** Compare computed pixels, and name the root size if it isn't 16.
 
 ## Done when
 
-- The scale is shown in a frame (a real screen or a specimen page), its values on a plate beside it, and every claim about it is measured in characters of real text.
+- The scale is shown in a frame (a real page or a specimen page), its values on a plate beside it, and every claim about it is measured in characters of real text.
 - The fonts that actually rendered are named, and any stand-in is disclosed.
 - Every off-scale group has a count and a source.
 - A proposal's pairs come from one build and differ only in type.

@@ -1,14 +1,14 @@
 # Palette change: a new colour across the product
 
-Use this for a proposed new value of a colour or colour token, shown as today beside proposed across the product's screens. Examples: a warmer grey, a darker accent blue, a softer border, a new brand palette. It is not for whether an existing theme holds up (dark-mode.md), or for contrast as the question itself (accessibility.md). Read board-anatomy.md and writing.md together in the program that makes the proposed build, with pixels.md when the value paints a surface, whose share of the screen is then the measure; the three fit in one read.
+Use this for a proposed new value of a colour or colour token, shown as today beside proposed across the product's pages. Examples: a warmer grey, a darker accent blue, a softer border, a new brand palette. It is not for whether an existing theme holds up (dark-mode.md), or for contrast as the question itself (accessibility.md). Read board-anatomy.md and writing.md together in the program that makes the proposed build, with pixels.md when the value paints a surface, whose share of the page is then the measure; the three fit in one read.
 
-Contents: The question and the opening · What the value does decides its checks · Evidence, in order · Making the proposed side · Screens, ranking and tiers · The beats · What great looks like
+Contents: The question and the opening · What the value does decides its checks · Evidence, in order · Making the proposed side · Pages, ranking and tiers · The beats · What great looks like
 
 Most examples come from one board about a warmer light grey, and a few imagine a darker accent blue. Their words and numbers show the pattern. Write yours from this product's evidence.
 
 ## The question and the opening
 
-A palette ask is a yes-or-no decision, so title it as one, in the product's name, with no hex: "Should Acme's lightest grey be a little warmer?" or "Should Acme's links and buttons be a darker blue?" The lede says why it's asked and what you compared ("…where that grey is used today, and how ten screens would look with the new one").
+A palette ask is a yes-or-no decision, so title it as one, in the product's name, with no hex: "Should Acme's lightest grey be a little warmer?" or "Should Acme's links and buttons be a darker blue?" The lede says why it's asked and what you compared ("…where that grey is used today, and how ten pages would look with the new one").
 
 Write the short answer in this order:
 1. **The verdict and its condition:** "Yes, with one check first."
@@ -18,7 +18,7 @@ Write the short answer in this order:
 5. **Any exception the evidence found, by section:** "Dark mode stays the same, apart from a few buttons covered in section 4." Leave this out when there is none.
 
 Give three numbers, one for each job, each over a sentence that works as its yardstick:
-- **Magnitude:** the most a screen shows the change. "64% of the editor is this grey. No other screen we compared has more." For a fill, text or links, count the elements or characters instead.
+- **Magnitude:** the most a page shows the change. "64% of the editor is this grey. No other page we compared has more." For a fill, text or links, count the elements or characters instead.
 - **Guardrail:** the tightest contrast the change touches. "4.58 : 1 for the mid-grey text. 4.5 : 1 is the minimum, so it still passes."
 - **Risk:** the places that won't follow, or the reach if nothing escapes. "1 place has the old grey written straight into the code, so it won't change with the rest."
 
@@ -34,7 +34,7 @@ The reach table (evidence step 3) says what the value is used for. Most values d
 - **Text, icons or links.** Check it against every surface it sits on (the `TEXT` rows in that colour). Check that links still stand apart from body text, with 3 : 1 between them or an underline. Rank by characters or elements, because thin text is few pixels.
 - **Borders, focus rings and selected outlines.** These need 3 : 1 against the surfaces beside them. Decorative dividers are exempt; say which is which.
 - **Tints and mixes** (`bg-primary/10`, `color-mix`, a translucent copy). They change too, but the pixel count doesn't see them. List them from the code count as "changes too, not in the pixel share".
-- **Several values at once** (a new brand palette). Give one row per token, old to new, and rank screens by the combined share of every changed colour. Then run the rows above for each value.
+- **Several values at once** (a new brand palette). Give one row per token, old to new, and rank pages by the combined share of every changed colour. Then run the rows above for each value.
 
 ## Evidence, in order
 
@@ -53,8 +53,8 @@ Run this as one research pass, reading code and pages in parallel. The code is i
 
 Both sides must come from the same code and data, differing only in the change. Otherwise pixel differences come from the data, and the shares can't be compared. Build, measure, then place:
 1. **Make the change the way it would ship.** Clone one frame of today's build into a spot beside the planned grid, and edit the token line in the clone. Check that it took: the token resolves to the new value in the clone.
-2. **Measure every route on both builds** before placing any pair: today's through the frame you cloned from, the proposal's through the clone. Use the measure the value's role calls for. For a surface, that is visible-pixel share (pixels.md, "Measuring before you place"), and the old colour's `remainder` near zero confirms the edit reached every screen. For text, links, icons or a small fill, it is the elements or characters that carry it and their contrast (measuring.md, sections 4 and 5), and the token resolving to the new value on each route confirms the edit. Rank.
-3. **Place the pairs in rank order.** Make each frame with explodeState at its route, named by its rank and a short screen name ("02 Settings", then "02 new"), the pair's first frame with its caption head. The clone is itself one proposed screen: move it into its pair's slot and rename it with `updateNode` rather than making its route twice.
+2. **Measure every route on both builds** before placing any pair: today's through the frame you cloned from, the proposal's through the clone. Use the measure the value's role calls for. For a surface, that is visible-pixel share (pixels.md, "Measuring before you place"), and the old colour's `remainder` near zero confirms the edit reached every page. For text, links, icons or a small fill, it is the elements or characters that carry it and their contrast (measuring.md, sections 4 and 5), and the token resolving to the new value on each route confirms the edit. Rank.
+3. **Place the pairs in rank order.** Make each frame with explodeState at its route, named by its rank and a short page name ("02 Settings", then "02 new"), the pair's first frame with its caption head. The clone is itself one proposed page: move it into its pair's slot and rename it with `updateNode` rather than making its route twice.
 
 ```js
 const clone = await canvas.cloneFrame({ pageId, sourceFrameId: todayId, name: 'Proposed build', route: '/editor', position: { x: 18000, y: 0 } })
@@ -67,13 +67,13 @@ await clone.explodeState('/settings', { name: '02 new', position: { rightOf: tod
 - **If the edit doesn't take** because a runtime copy wins, that is your first finding. Preview with a stronger rule only to show the look. A preview rule that always wins can look better than the real ship, so say on the board, beside that risk, that the real app would look different until the copy is fixed.
 - **Disclose the method, whatever it is,** in the legend or a risk. When you added preview-only code, removing it is a step in section 5.
 
-## Screens, ranking and tiers
+## Pages, ranking and tiers
 
-Pick screens from where the token paints in code, not from the nav. Take the largest painted areas (a page background, a canvas, an upload area), the menus and settings, and a few screens where it's only a detail. Cover every role the value plays and the top of the ranking. The rest go under "What we didn't check". One grey with wide reach needed ten pairs.
+Pick pages from where the token paints in code, not from the nav. Take the largest painted areas (a page background, a canvas, an upload area), the menus and settings, and a few pages where it's only a detail. Cover every role the value plays and the top of the ranking. The rest go under "What we didn't check". One grey with wide reach needed ten pairs.
 
-Rank by the measure the value's role calls for. For a surface, that is the share of each proposed frame that is exactly the new colour, in visible pixels rather than element boxes. Today's share of the old colour should agree with it within about half a point. Where the value paints text, links, icons or small fills, as most accents do, rank by the elements or characters that carry it; when it also fills a surface, rank by pixel share and give the count as a second column. When every screen shows the value the same way, such as one main button each, skip the ranking and the tiers: say so in the beat's claim, choose screens that cover each role the value plays, and give the room to its states and the text on it. Number screens 01, 02… in rank order, so the index is the rank, or in reading order when there is no ranking.
+Rank by the measure the value's role calls for. For a surface, that is the share of each proposed frame that is exactly the new colour, in visible pixels rather than element boxes. Today's share of the old colour should agree with it within about half a point. Where the value paints text, links, icons or small fills, as most accents do, rank by the elements or characters that carry it; when it also fills a surface, rank by pixel share and give the count as a second column. When every page shows the value the same way, such as one main button each, skip the ranking and the tiers: say so in the beat's claim, choose pages that cover each role the value plays, and give the room to its states and the text on it. Number pages 01, 02… in rank order, so the index is the rank, or in reading order when there is no ranking.
 
-Break tiers at the big jumps in this product's data. Name each tier by how noticeable the change is, with the range from the data beside it. One board had "Most noticeable · about half the screen or more", "Noticeable in one area · about a sixth of the screen" and "Easy to miss · less than 4%". Give each tier head one sentence on what the colour is in those screens: "Here the grey is a large backdrop: the canvas, the page behind a form."
+Break tiers at the big jumps in this product's data. Name each tier by how noticeable the change is, with the range from the data beside it. One board had "Most noticeable · about half the page or more", "Noticeable in one area · about a sixth of the page" and "Easy to miss · less than 4%". Give each tier head one sentence on what the colour is in those pages: "Here the grey is a large backdrop: the canvas, the page behind a form."
 
 ## The beats
 
@@ -89,8 +89,8 @@ Break tiers at the big jumps in this product's data. Name each tier by how notic
 
 On the grey board the heads read "The new grey shows where it meets other colours", "Hovers, menus and loading states change too", "Everything around the grey stays the same" and "Text stays just as readable". A darker accent might read "White labels on the main button get easier to read" and "Hover is now too close to the resting button".
 
-**3 How it would look.** The claim says where the change shows most, for example "You'll notice it most on screens with large grey backgrounds". When the screens are ranked, an index of every screen goes under the beat head, grouped by tier. Each row is index · name · a bar · the measure. Add one sentence of method, and one line of small print saying how closely today and new agree and how much old colour remains. Unranked, skip the index, since the captions name each screen. Then give the pairs (today left, new right), under their tier heads when ranked, with captions and pointers.
-- **Captions.** A caption reads "01 Editor 64%". Then one sentence with a yardstick: "The canvas is the grey, so about two-thirds of the screen warms." Then the token and file:line in small print.
+**3 How it would look.** The claim says where the change shows most, for example "You'll notice it most on pages with large grey backgrounds". When the pages are ranked, an index of every page goes under the beat head, grouped by tier. Each row is index · name · a bar · the measure. Add one sentence of method, and one line of small print saying how closely today and new agree and how much old colour remains. Unranked, skip the index, since the captions name each page. Then give the pairs (today left, new right), under their tier heads when ranked, with captions and pointers.
+- **Captions.** A caption reads "01 Editor 64%". Then one sentence with a yardstick: "The canvas is the grey, so about two-thirds of the page warms." Then the token and file:line in small print.
 - **Pointers.** Point at the element each caption names, on every proposed frame, including a whole backdrop ("Canvas"). A pair can go without one only when a "Where to look" note covers it, with its own line to the element or by pair number.
 - **Where to look.** The eye should go where changed and unchanged colours meet, which is rarely one spot. Put a "Where to look" note in a free slot of the tier, beside the pair it points into (board-anatomy.md).
 
@@ -98,7 +98,7 @@ On the grey board the heads read "The new grey shows where it meets other colour
 - The kicker names the action: Check first, Fix alongside, Tidy up, Check after shipping, or What we didn't check.
 - Then give a headline claim, and a plain body: what, why, the consequence, and how this board could mislead. End with the source in small print.
 - Calibrate the hedges ("probably wins", "may cancel"), and pair each with a test someone can run.
-- The last note is "What this board doesn't prove". It lists the states not captured and their nearest proxy, the themes not shown, and the preview method, and says "the percentages only cover these screens".
+- The last note is "What this board doesn't prove". It lists the states not captured and their nearest proxy, the themes not shown, and the preview method, and says "the percentages only cover these pages".
 
 **5 What we recommend.** The options come from the evidence, ordered from smallest to largest, each costed from the usage counts. On the grey board they were: this value alone; it and its neighbours, so hovers and dividers keep their relationship ("touches at least N more lines, and the new colours still need picking"); and the whole ramp, a brand decision after which text contrast needs checking again.
 
@@ -107,7 +107,7 @@ Box the recommended option. Put the ask in one line: "A yes on option A. Then st
 2. Make the change: the diff.
 3. Fix the copies that won't follow: file:line for each.
 4. Remove any preview-only code.
-5. Look at the states no screenshot shows, and at one screen in each other theme.
+5. Look at the states no screenshot shows, and at one page in each other theme.
 
 ## What great looks like
 
@@ -115,8 +115,8 @@ Check with viewBoard before replying:
 - A yes-or-no title in the reader's words, and an answer that opens with the verdict and its condition.
 - Each opening number matches its beat and has a yardstick. The opening image shows old and new with what they meet or sit on.
 - Today shows the whole ramp and the reach by plain role, with counts. The proposal covers where it shows, the unshown states, what stays (other themes too) and the contrast its role calls for.
-- Every scope screen is framed or under "What we didn't check", and the top screen by the measure is on the board.
-- Pairs are ranked by one measure, under tiers named by how noticeable the change is, and the remainder is reported once. Where the measure doesn't separate the screens, the board says so and covers each role instead.
+- Every scope page is framed or under "What we didn't check", and the top page by the measure is on the board.
+- Pairs are ranked by one measure, under tiers named by how noticeable the change is, and the remainder is reported once. Where the measure doesn't separate the pages, the board says so and covers each role instead.
 - A pointer on every proposed frame, or a "Where to look" note that covers it.
 - The main risk appears in the answer, the recommendation box, the risks and step 1, and the preview method is on the board.
 - Options run smallest first with their costs, the ask is one line, and the steps run without the chat.

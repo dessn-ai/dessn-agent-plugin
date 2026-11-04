@@ -6,10 +6,10 @@ Contents: The question · How the theme switches · Evidence · Proposing a new 
 
 ## The question
 
-Frame the question the way the reader would ask it: "Is Acme's dark mode ready to ship?" or "Where does dark mode break?" The answer gives the count first, then what breaks, then why, in plain words. For example: "Mostly. Five of eight screens read well in dark. Two keep bright light-mode panels, and text on one is hard to read. Three causes explain all of it, and the biggest is one setting."
+Frame the question the way the reader would ask it: "Is Acme's dark mode ready to ship?" or "Where does dark mode break?" The answer gives the count first, then what breaks, then why, in plain words. For example: "Mostly. Five of eight pages read well in dark. Two keep bright light-mode panels, and text on one is hard to read. Three causes explain all of it, and the biggest is one setting."
 
 Stats that work here:
-- screens that hold up, out of the scope;
+- pages that hold up, out of the scope;
 - the worst text contrast, against 4.5 : 1;
 - the number of causes, with the largest cause's count.
 
@@ -41,7 +41,7 @@ Make the dark frames through the app's own switch. Set the choice the way the ap
 ## Evidence
 
 1. **Token pairs.** For every semantic colour, resolve its light and dark values in the page with each theme on (`TOKENS`), and list the aliases that have no dark value and fall through to light. The light/dark table is the Today plate, with its chips set on the product's dark surface.
-2. **Text contrast in dark.** Run the text census (`TEXT`) on each screen with the theme on: every text colour against its effective background, through transparency. Run it in light too, so a failure that is already there in light is named as existing.
+2. **Text contrast in dark.** Run the text census (`TEXT`) on each page with the theme on: every text colour against its effective background, through transparency. Run it in light too, so a failure that is already there in light is named as existing.
 3. **Light leaks.** Areas that stay light in dark mode. `pixels(page, { bright: 0.8 })` (pixels.md) gives the share of pixels at least that light and the elements that paint them. White text, a bright primary button or a photo is fine by design, so read the painters before calling something a leak.
 4. **Causes,** each counted with file:line:
    - colours written straight into the code;
@@ -60,13 +60,13 @@ For a product without dark mode, or a new brand theme, build the theme in a clon
 
 ## Ranking and tiers
 
-Use one declared measure per ranking. Rank by the share of text characters below their minimum, which is the reader's main risk, and show light-leak area as a second column. You can do it the other way round, but never switch measures partway: a board once ranked by failing text and headlined a screen by its bright area.
+Use one declared measure per ranking. Rank by the share of text characters below their minimum, which is the reader's main risk, and show light-leak area as a second column. You can do it the other way round, but never switch measures partway: a board once ranked by failing text and headlined a page by its bright area.
 
-Name tiers by what the reader sees: "Text is hard to read", "Bright light-mode patches remain", "Reads well in dark". Always frame the worst screen, even when the cause is already known.
+Name tiers by what the reader sees: "Text is hard to read", "Bright light-mode patches remain", "Reads well in dark". Always frame the worst page, even when the cause is already known.
 
 ## The beats
 
-- **1 Today.** How dark mode works, in one plain sentence ("A switch in settings adds a dark class to the page; some older screens follow the computer's setting instead"). Then the token-pairs plate, and the colours without a dark value.
+- **1 Today.** How dark mode works, in one plain sentence ("A switch in settings adds a dark class to the page; some older pages follow the computer's setting instead"). Then the token-pairs plate, and the colours without a dark value.
 - **2 What we found.** One note per cause, each with its count ("12 places write white straight into the code"), where it shows (by pair number), and its source.
 - **3 How it looks.** Light and dark pairs of the same route and data, ranked by the measure. Each caption carries the measure in its head ("03 Reports 16% of text too faint"). Put pointers on each leak and on each failing text that is small at fit.
 - **4 What to watch out for.** The OS setting against the toggle, states not captured, images, and anything the board calls handled.
@@ -74,8 +74,8 @@ Name tiers by what the reader sees: "Text is hard to read", "Bright light-mode p
 
 ## Caveats
 
-- **"Already handled" needs a render or a search behind it.** A board once dropped its worst screen as already handled.
-- **"Goes dark cleanly" has to match the screen's own numbers.** A screen still failing 13% of its text doesn't go dark cleanly.
+- **"Already handled" needs a render or a search behind it.** A board once dropped its worst page as already handled.
+- **"Goes dark cleanly" has to match the page's own numbers.** A page still failing 13% of its text doesn't go dark cleanly.
 - **A pair differs only in theme:** the same route, data and build.
 - **Put dark chips on the product's dark surface.** On the canvas grey they misread.
 - **Name the switch you used** (toggle or OS) on the board, beside the claim it affects.
@@ -83,7 +83,7 @@ Name tiers by what the reader sees: "Text is hard to read", "Bright light-mode p
 ## Done when
 
 - The mechanism is stated, and both the toggle and the OS paths are checked when they can differ.
-- Every screen in scope is framed or under "What we didn't check", and the worst screen is framed.
-- One measure ranks the screens. The second measure is a column, and every caption head shows the ranked measure.
+- Every page in scope is framed or under "What we didn't check", and the worst page is framed.
+- One measure ranks the pages. The second measure is a column, and every caption head shows the ranked measure.
 - Every cause has a count and a source, and every fix names the causes it clears.
-- No head claims more than its screens show.
+- No head claims more than its pages show.

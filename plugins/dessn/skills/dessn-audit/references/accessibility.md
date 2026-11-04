@@ -6,20 +6,20 @@ Contents: The question · Evidence · Ranking and tiers · The beats · Caveats 
 
 ## The question
 
-Frame the question the way the reader would ask it: "Can everyone read and use Acme?" or "Does Acme meet WCAG AA?" The answer gives the count first, then the worst case, then the one fix that clears most. For example: "Not yet. 14% of the text we measured is below the minimum contrast, most of it one grey used for helper text. Keyboard focus is invisible on 3 of 9 screens."
+Frame the question the way the reader would ask it: "Can everyone read and use Acme?" or "Does Acme meet WCAG AA?" The answer gives the count first, then the worst case, then the one fix that clears most. For example: "Not yet. 14% of the text we measured is below the minimum contrast, most of it one grey used for helper text. Keyboard focus is invisible on 3 of 9 pages."
 
 Stats that work here:
 - the share of text characters below their minimum;
 - the worst contrast, against 4.5 : 1;
-- the number of screens where focus doesn't show.
+- the number of pages where focus doesn't show.
 
 The opening's value image is the worst failing pair as values: a chip of the text colour on its real background, with its ratio and the minimum beside it. The text itself shows in its frame, since a note can't set it in the product's font.
 
-When the scope is one screen ("audit contrast on our dashboard"), its states, tabs and regions are the scope list, and the ranking unit is the cause or the region.
+When the scope is one page ("audit contrast on our dashboard"), its states, tabs and regions are the scope list, and the ranking unit is the cause or the region.
 
 ## Evidence
 
-- **Text contrast.** Run `TEXT` (measuring.md) on every screen. The minimums are:
+- **Text contrast.** Run `TEXT` (measuring.md) on every page. The minimums are:
   - 4.5 : 1 for body text;
   - 3 : 1 for large text (24 px, or 18.66 px at weight 700);
   - 7 : 1 for AAA.
@@ -27,7 +27,7 @@ When the scope is one screen ("audit contrast on our dashboard"), its states, ta
   Disabled text is exempt. Placeholder text is not.
 - **Non-text contrast.** Borders of inputs, icons that carry meaning, and focus rings need 3 : 1 against what's next to them. Resolve their colours with `TOKENS`, and compute the ratio with the same formula.
 - **Text size.** List text under 12 px from the census rows, with where it appears. 12 px is a readability convention, not a WCAG rule, so call it one.
-- **Focus.** Press Tab through each screen and read where focus lands and whether it shows. An element with no outline and no shadow while focused probably shows nothing. Confirm with a picture before you say so.
+- **Focus.** Press Tab through each page and read where focus lands and whether it shows. An element with no outline and no shadow while focused probably shows nothing. Confirm with a picture before you say so.
 
 ```js
 const FOCUS = String.raw`() => {
@@ -60,7 +60,7 @@ const UNNAMED = String.raw`() => [...document.querySelectorAll('button, a[href],
 
 ## Ranking and tiers
 
-Rank screens by the share of text characters that fail. Give focus and target failures their own columns, not a mixed score. Name tiers by what the reader risks: "Hard to read for many people", "Hard to use without a mouse", "Holds up".
+Rank pages by the share of text characters that fail. Give focus and target failures their own columns, not a mixed score. Name tiers by what the reader risks: "Hard to read for many people", "Hard to use without a mouse", "Holds up".
 
 ## The beats
 
@@ -78,6 +78,6 @@ Rank screens by the share of text characters that fail. Give focus and target fa
 
 ## Done when
 
-- Every screen in scope has a failing share, and the worst screen is framed.
+- Every page in scope has a failing share, and the worst page is framed.
 - Each failure group has a cause, a count and a fix, and the fixes are ordered by what they clear.
 - Focus, targets and names are checked, or listed under "What we didn't check".
