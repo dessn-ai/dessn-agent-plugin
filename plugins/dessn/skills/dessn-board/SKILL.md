@@ -45,7 +45,9 @@ A flow board shows a product's real pages in the order a person moves through th
 right, routes the person chooses above it, what the system does (waits, errors, dead ends, other ways in) below it, each
 edge in the column of the step where it happens. Someone who never saw the chat understands it in a minute.
 
-Someone asking to audit a flow gets this board with what's broken marked on it: each problem a numbered red disc on the frame where it happens, and the same number in "Where people get stuck" at the top with its words and its step.
+Someone asking to audit a flow gets this board with what's broken marked on it: each problem a numbered red disc on the frame where it happens, and the same number in "Where people get stuck" at the top with its words and its step. The plan holds the verdict as well: `answer` (the plain answer to what they asked) and `fixFirst` (the change to make first) print under the title, and a finding's `fix` (the change that clears it) under its line. A finding's `rank` (1 is fixed first) numbers its disc and orders the list; findings without one keep the steps' order. `at`, a selector in its step's page, points at the element it's about.
+
+What to check at each step is the audit's: dessn-audit's kind files hold the checks and the probes that measure them. An accessibility audit of a flow reads `references/accessibility.md` (contrast, focus, names and targets, measured by `dessn_canvas_screenshot` `measure` steps), a consistency one `references/consistency.md`, any other review `references/general-review.md` (each also `skill://dessn-audit/references/<file>`; `dessn_guide({ topic: 'audit' })` holds the skill). This board is where its findings go.
 
 **The parts,** the way Dessn's design agent builds them (its flow skill and its `buildFlow`, so its boards and yours read alike):
 
@@ -57,7 +59,7 @@ Someone asking to audit a flow gets this board with what's broken marked on it: 
 | A lane heading | In the gutter left of its row, `w` 2000, level with the row's top | The lane's name and one line. The happy path first, routes the person chooses above it, what the system does (waits, errors, dead ends, other ways in) below it |
 | A frame | `x` = column × 2640, `y` = row × 2400, one page each, `size: { w: 1440, h: 900 }` | Named `{id} · {name}`, at most 15 characters: a name tag past that is cut at fit. An edge state sits in the column of the step where it happens, numbered after it ("2a"); two in one column stack down |
 | A caption | 90 under its frame, its frame's width | The id, the name, 1–2 lines quoting the page's own words, and "Way out:" the control that leads on (or "None") |
-| A disc | On a frame with a finding: `x` = its right edge − 160, 180 above its top | The finding's number |
+| A disc | On a frame with a finding: beside its top right corner, 60 into the gap, 160 across (over the frame, the name tag covers it at fit) | The finding's number |
 | START, END | 160 left of the first step and right of the last, on the row's centre line | Joined to them with an unlabelled arrow |
 | A marker for another way in | 60 left of its page, `w` 520, on its centre line | An `h3` in the grey ("From 1 ·<br>bad email", "Invite email opened"), with an unlabelled arrow to the page |
 
@@ -66,7 +68,7 @@ Those gaps (1200 between columns, 1500 under a row) hold the arrows' labels, the
 **Find the steps:**
 
 - `dessn_surfaces_list({ project, query })`: the Library's pages with `route`, `shows` (the words on them) and `via` (the page that leads there). A route with a state token in its query is a state setup saved. On a large app this is most of the inventory, and it wakes no sandbox.
-- `dessn_files_list({ at: <a frame>, grep })` and `dessn_files_read`, many paths in one call, for the guards and routers, the conditions that change a page, the form rules and their error messages. `dessn_canvas_get` on a frame lists its `routes`. The first search wakes a sleeping frame (20–30 s); the ones after take seconds.
+- `dessn_files_list({ at: <a frame>, grep })` and `dessn_files_read`, many paths in one call, for the guards and routers, the conditions that change a page, the form rules and their error messages. `dessn_canvas_get` on a frame lists its `routes` and, while its app runs, its `mocks`: the requests a mock answers (what the frame shows from them is sample data, so a finding about it says so) and those none does. The first search wakes a sleeping frame (20–30 s); the ones after take seconds.
 - **A page's name is the Library's label for it, not text on its page.** Setup names a saved state for the designers
   ("Permissions", "Referral", "Email check"); the page itself prints its own words ("Allow microphone access"). The words
   a state shows are in its saved page's `shows`, in the route's own copy in code (its component and the
@@ -79,12 +81,14 @@ Those gaps (1200 between columns, 1500 under a row) hold the arrows' labels, the
 - A frame the Library has no saved page for: make one frame of the app first, then `from: { frame: <its id or an earlier item's key>, state: '<route>' }` on the same sandbox, in the same batch. A state only clicks reach (an open dialog, a filled form, the error under a field): the Library may already hold it (a route with a state token); else press to it with `dessn_canvas_screenshot({ target: <a frame>, steps })` and end on `{ freeze: { proof: '<words it shows>' } }`, as the design agent's flow freezes each state its plan clicks to: its `frozen.state` is a step's `from: { frame, state }`, the app itself at that moment (a staff preview for now). Where a freeze isn't open or answers `restored: false`, a copy whose code shows it (`from: { frame, copy: true }`, then `dessn_files_write`), or a line in "Not shown". Each press answers what it changed, and one that matched nothing `instead`: what the page shows to press.
 - **See a state before it goes on the board.** `dessn_canvas_screenshot({ target: <a frame>, route: [<up to 12 routes>] })` pictures them together, and `frames: [<links>]` the frames you placed: a 404, an error screen, grey placeholders or a page cut off aren't the step, and the board's picture at fit is too small to tell. Such a step gets a mock or a copy that shows it, or a line in "Not shown". This is what the design agent's proof does for each of its frames.
 
-**Build it,** in one call: `dessn_nodes_create({ page, key, flow: <the plan> })`. The plan says what the board holds; where each part goes, its sizes, the header levelled over the top row and the arrows' sides are the design agent's own code (its `buildFlow`), so your board and its read alike. The first step lands at `x`, `y` when the plan names them, else clear under what's on the page. `stuck` is a finding (`{ words, gloss }`): its disc and its line in the header. `edgeOf` puts an edge state in its step's column; `stub` is another way in; `above: true` puts a lane over the happy path, which comes first:
+**Build it,** in one call: `dessn_nodes_create({ page, key, flow: <the plan> })`. The plan says what the board holds; where each part goes, its sizes, the header levelled over the top row and the arrows' sides are the design agent's own code (its `buildFlow`), so your board and its read alike. The first step lands at `x`, `y` when the plan names them, else clear under what's on the page. `stuck` is a finding (`{ words, gloss, fix?, rank?, at? }`): its disc and its line in the header. `edgeOf` puts an edge state in its step's column; `stub` is another way in; `above: true` puts a lane over the happy path, which comes first:
 
 ```json
 {
  "title": "From sign-in to the app",
  "lede": "1–2 plain lines on whose journey it is and where it ends",
+ "answer": "An audit: the plain answer to what they asked",
+ "fixFirst": "An audit: the one change to make first",
  "notShown": [
   "Their email inbox (outside the product)"
  ],
@@ -130,7 +134,10 @@ Those gaps (1200 between columns, 1500 under a row) hold the arrows' labels, the
      },
      "stuck": {
       "words": "Only \"Required\"",
-      "gloss": "Most people type an address the form refuses and aren't told why"
+      "gloss": "Most people type an address the form refuses and aren't told why",
+      "fix": "Say what the address needs: \"Enter an email like name@company.com\"",
+      "rank": 1,
+      "at": "input[type=email]"
      }
     }
    ]
