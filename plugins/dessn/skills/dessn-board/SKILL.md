@@ -165,7 +165,7 @@ A step's `out` is drawn for you, as its caption's own grey "Way out: …" line, 
 
 The grid is the layout, so `dessn_nodes_arrange` isn't part of this: it would fold the lanes into one line. Take `dessn_canvas_screenshot({ target: <page>, region: 'fit', fresh: { waitMs: 120000 } })` once the frames have their pictures: its `issues` name what overlaps, each with the call that fixes it, and a `region` shows a part close up.
 
-**Arrows.** An arrow along a row joins the frames as it is. One that changes rows leaves and enters on the right side of both frames, which `flow` does for you (in an item, `from: { key, side: 'right' }, to: { key, side: 'right' }`), so it runs down the gap between columns, clear of the captions and name tags, with room for its label; bottom to top it would cross both. Two leaving one frame on one side in one direction stack their labels: give the second `side: 'left'`, or a marker instead of a line (the part above). Labels keep their size on screen, so past about 20 characters one wraps and stands taller than its line: the control's words, shortened. `color` and `dashed` are `dessn_nodes_create` fields.
+**Arrows.** An arrow along a row joins the frames as it is. One that changes rows has its sides pinned by `flow` so it comes in on its target's near side: to a step further right it leaves by the right and comes in by the left, down the one gap between their columns; to a step further left it leaves by the left and comes in by the right; in the same column (an edge state under its step) it leaves and enters by the right, a rail in the gap beside them. So it stays clear of the captions and name tags, with room for its label; bottom to top it would cross both. An arrow's `side` (both ends), or `fromSide` / `toSide` (one end), wins over these (in an item, `from: { key, side: 'right' }, to: { key, side: 'left' }`). A lane step with no `c` or `edgeOf` sits one column right of the step an arrow leads into it from (else of its lane's step before it), so a branch carries on right of where it leaves the path and its arrow goes forward through one gap. Two leaving one frame on one side in one direction stack their labels: give the second `side: 'left'`, or a marker instead of a line (the part above). Labels keep their size on screen, so past about 20 characters one wraps and stands taller than its line: the control's words, shortened. `color` and `dashed` are `dessn_nodes_create` fields.
 
 - Arrows are thin. Colour says **which path**, dash says **who moves the person**. The board has no key: an arrow's label is the only words it carries, so it says what happens in the product's words.
 
@@ -207,8 +207,13 @@ The journey includes every way into it and out of it. Walk this list for every s
   the state the action really creates: check the status or flag it sets in the code.
 
 Merge states that look the same. Skip hover-only or momentary states unless the flow depends on them.
-Build only one journey when two have different goals (an admin configuring billing is separate), and
-offer the other at the end.
+A flow can hold more than one journey (an admin configuring billing beside the person who pays). When the
+ask says "entire", "every" or "all", the person usually wants all of them on one board, each journey in
+lanes of its own, named for it. A second journey on the same board is more lanes in the same plan:
+the same `flow` builds them in the same
+`dessn_nodes_create` call, a few lines of plan each. Offered at the end instead, it costs
+the person another turn: its own discovery, plan and build. A journey that starts on another page (a
+public link, an email) enters from its own marker (`stub`) on the same board.
 
 ### Truth
 
