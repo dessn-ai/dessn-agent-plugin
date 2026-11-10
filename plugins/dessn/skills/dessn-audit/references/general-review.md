@@ -26,7 +26,7 @@ The answer gives the verdict and the few themes that explain most of the finding
 
 ## Window sizes and content
 
-- **Other window sizes.** Frames stay at their own size, about 1440 × 900, so the board's frames show that size. To measure narrower, open a page, set `Emulation.setDeviceMetricsOverride` (for example 390 × 844, mobile) and run the censuses or read `page.snapshot` in the same program, since the setting ends with it. Report what breaks (horizontal scroll, clipped or overlapping text, controls under 24 px) with counts. Say on the board that the frames show desktop and the narrow findings come from emulated pages.
+- **Other window sizes.** Frames stay at their own size, about 1440 × 900, so the board's frames show that size. To measure narrower, open a page, set `Emulation.setDeviceMetricsOverride` (for example 390 × 844, mobile) and run the censuses or read `page.snapshot` in the same program, since the setting ends with it. Report what breaks (the page itself scrolling sideways, clipped or overlapping text, controls under 24 px) with counts. A row whose content runs past its edge is not always clipped: one built to scroll (`overflow-x: auto` or `scroll` in its computed style, often with `scroll-snap-type` and a hidden scrollbar, so the next item peeks) reaches the rest by a swipe, and the same classes on the app's other rows say it is how the app does it. Say on the board that the frames show desktop and the narrow findings come from emulated pages.
 - **Content that stretches a page.** Long names, other languages, empty, error and loading states. Set the data or state the page needs through its mock data (dessn-mocks), take a state and make a frame of it, or list it under what you didn't check.
 
 ## A finding
