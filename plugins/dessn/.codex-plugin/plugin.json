@@ -1,25 +1,27 @@
 {
   "name": "dessn",
-  "version": "1.0.82",
-  "description": "Design on Dessn from your own agent: Dessn's design skills (explore an app, reuse its design system, variations as copies checked against real pictures, readable boards and flows) plus the Dessn MCP, signed in with OAuth.",
+  "version": "1.0.88",
+  "description": "The visual layer for designing and building with your agent: see your real app live on a Dessn canvas, spot where screens drift from your design system, and map whole user journeys.",
   "author": {
     "name": "Dessn",
     "url": "https://dessn.ai"
   },
   "homepage": "https://mcp.dessn.ai/install",
+  "repository": "https://github.com/dessn-ai/dessn-agent-plugin",
+  "license": "MIT",
   "keywords": [
-    "design",
-    "canvas",
-    "prototyping",
-    "design-system",
-    "mcp"
+    "dessn",
+    "dessn canvas",
+    "dessn mcp",
+    "dessn board",
+    "dessn design agent"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Dessn",
-    "shortDescription": "Design on your real app, live on a canvas",
-    "longDescription": "Dessn is a design canvas where every frame is your real app running from its own code. This plugin connects the Dessn MCP (sign in once with your Dessn account) and adds Dessn's design skills: explore an app before designing, reuse its design system, make variations as frame copies you edit and check against real pictures, and lay out boards, flows and diagrams people can read.",
+    "shortDescription": "The visual layer for your app",
+    "longDescription": "Dessn is the visual layer for designing and building with your agent. Every frame on a Dessn canvas is your real app, running live from its own code, so your agent can show you the work instead of describing it.\n\n• See what's live: put every screen of your app on one page, grouped by area, and click through any of them.\n• See what's drifting: audit screens against your app's own components and tokens, with a note pinned where each one drifts.\n• Map entire journeys: lay out a user flow as a board of real screens, labelled arrows and notes your team can comment on.\n• Explore without risk: each variation is a copy of a frame, its own running app, side by side with the original.\n• Bring it home: take a design back to your repository as a git patch.\n\nReading your canvas and changing boards use no credits; asking Dessn's design agent to design something does. You need a Dessn account (create.dessn.ai); a new account can start from a starter app. From a web chat your agent reads code and lays out boards, and asks Dessn's design agent for code changes; an agent on your own computer can also edit a frame's code and capture a live site.",
     "developerName": "Dessn",
     "category": "Design",
     "capabilities": [
@@ -28,10 +30,13 @@
       "Write"
     ],
     "websiteURL": "https://dessn.ai",
+    "supportURL": "https://www.dessn.com/support",
+    "privacyPolicyURL": "https://www.dessn.com/privacy",
+    "termsOfServiceURL": "https://www.dessn.com/terms",
     "defaultPrompt": [
-      "Make three variations of the Dashboard in my Dessn project, side by side on a new page, using the app's own components",
-      "Put every surface of my Dessn project on one page, grouped by area",
-      "Map the sign-up flow of my Dessn project as a board with labelled arrows"
+      "Map this app's user journey on a new Dessn page: the screens first, then arrows between them, then notes",
+      "Audit this app's design system on a new Dessn page: bring the screens in and note where each one drifts",
+      "Put every screen of my Dessn project on one page, grouped by area"
     ],
     "brandColor": "#1C1A1D",
     "composerIcon": "./assets/logo.svg",

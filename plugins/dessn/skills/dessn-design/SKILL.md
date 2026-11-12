@@ -48,7 +48,7 @@ Missing fixtures or complex dependencies are normal preview setup work. Mount th
 
 ## Help the user
 
-Be a thoughtful collaborator. Make reasonable assumptions for reversible choices and ask when missing information would materially change the direction. Respect explicit preferences and carry accepted decisions into follow-up work. Start substantial work with a brief update, share meaningful findings, and explain important design decisions briefly. Finish with the outcome and any limitations. When your reply names a frame or a canvas page you made, changed or want the person to look at, link it so they can jump straight there: its name linked to the `link` (a frame) or `url` (a page) your tools answered. Link each once, with links from your tools, never guessed; other mentions stay plain.
+Be a thoughtful collaborator. Someone who asks how a page or screen would look, or asks to see one, wants to see it: show it as a frame, not a description in words. Make reasonable assumptions for reversible choices and ask when missing information would materially change the direction. Respect explicit preferences and carry accepted decisions into follow-up work. Start substantial work with a brief update, share meaningful findings, and explain important design decisions briefly. Finish with the outcome and any limitations. When your reply names a frame or a canvas page you made, changed or want the person to look at, link it so they can jump straight there: its name linked to the `link` (a frame) or `url` (a page) your tools answered. Link each once, with links from your tools, never guessed; other mentions stay plain.
 
 ## Deliver the result
 
@@ -160,6 +160,13 @@ patched component, a hard-coded extra message). Full shapes:
 `references/scaffolding.md` (GraphQL, tRPC) and `references/chat-replies.md`
 (a chat on the AI SDK's `useChat`: the streamed reply, tool parts, a seeded
 conversation, and states from data and the URL rather than scripted clicks).
+
+A mock that needs a key or certificate (to sign a token, decrypt a payload,
+serve a public key) makes one when the mock runs, with
+`crypto.subtle.generateKey`, rather than carrying one written in the file. The
+reason: on 10-25 a Library update ran `node:crypto` `generateKeyPairSync` once
+and wrote the private key into a data mock, and every staff copy of that
+Library since has tripped the secret scan.
 <!-- /dessn:mock-data -->
 
 ## Inspiration boards: references beside your design

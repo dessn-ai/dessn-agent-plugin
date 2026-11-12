@@ -1,6 +1,6 @@
 # Dessn for your agent
 
-[Dessn](https://dessn.ai) is a design canvas where every frame is your real app, running live from its own code. This plugin gives your coding agent Dessn's tools (the Dessn MCP, signed in with your Dessn account) and Dessn's design skills.
+[Dessn](https://dessn.ai) is the visual layer for designing and building with your agent: every frame on a Dessn canvas is your real app, running live from its own code, so you see what's live, what's drifting from your design system, and whole user journeys. This plugin gives your coding agent Dessn's tools (the Dessn MCP, signed in with your Dessn account) and Dessn's design skills.
 
 ## Install
 
@@ -29,6 +29,11 @@ The same skills come from the Dessn MCP itself, as prompts (`/dessn:design` in C
 
 - `plugins/dessn/`: the plugin (`.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.mcp.json`, `skills/`).
 - `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, `.cursor-plugin/marketplace.json`: this repository as a marketplace for Claude Code, Codex and Cursor.
+
+## Network
+
+The plugin talks to one endpoint, `https://mcp.dessn.ai/mcp` (OAuth with PKCE in your browser). Claude Code also runs a
+session hook that prints `plugins/dessn/session-start.md` once per session, with no network call.
 
 ## Support
 

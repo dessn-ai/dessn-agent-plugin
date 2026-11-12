@@ -58,7 +58,7 @@ What to check at each step is the audit's: dessn-audit's kind files hold the che
 | Not shown | 3400 right of it, `w` 3000 | Each state you couldn't put on the board, and why, and what you couldn't check from here (which path production gives people, say) |
 | A lane heading | In the gutter left of its row, `w` 2000, level with the row's top | The lane's name and one line. The happy path first, routes the person chooses above it, what the system does (waits, errors, dead ends, other ways in) below it |
 | A frame | `x` = column × 2640, `y` = row × 2400, one page each, `size: { w: 1440, h: 900 }` | Named `{id} · {name}`, at most 15 characters: a name tag past that is cut at fit. An edge state sits in the column of the step where it happens, numbered after it ("2a"); two in one column stack down |
-| A caption | 90 under its frame, its frame's width | The id, the name, 1–2 lines quoting the page's own words, and "Way out:" the control that leads on (or "None") |
+| A caption | 90 under its frame, its frame's width | 1–2 lines quoting the page's own words, and "Way out:" the control that leads on (or "None"); the frame's name tag names the step, so the caption doesn't again |
 | A disc | On a frame with a finding: beside its top right corner, 60 into the gap, 160 across (over the frame, the name tag covers it at fit) | The finding's number |
 | START, END | 160 left of the first step and right of the last, on the row's centre line | Joined to them with an unlabelled arrow |
 | A marker for another way in | 60 left of its page, `w` 520, on its centre line | An `h3` in the grey ("From 1 ·<br>bad email", "Invite email opened"), with an unlabelled arrow to the page |
@@ -218,7 +218,7 @@ public link, an email) enters from its own marker (`stub`) on the same board.
 ### Truth
 
 - **A frame keeps its slot and its caption gets a body only after you saw it show that state** (its picture, or `steps`); until then
-  the caption is its name. A skeleton, a spinner, the parent page or a different record is not the
+  it has none (its name tag names it). A skeleton, a spinner, the parent page or a different record is not the
   state.
 - **Captions claim only what the frame shows**: the words on screen, the people, the counts, the
   status. Anything true in code but not visible goes in the report.

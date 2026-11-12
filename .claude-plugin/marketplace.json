@@ -4,12 +4,12 @@
     "name": "Dessn",
     "url": "https://dessn.ai"
   },
-  "description": "Dessn: design on your real app from your own agent",
+  "description": "Dessn: the visual layer for designing and building with your agent",
   "plugins": [
     {
       "name": "dessn",
       "source": "./plugins/dessn",
-      "description": "Design on Dessn from your own agent: Dessn's design skills (explore an app, reuse its design system, variations as copies checked against real pictures, readable boards and flows) plus the Dessn MCP, signed in with OAuth.",
+      "description": "The visual layer for designing and building with your agent: see your real app live on a Dessn canvas, spot where screens drift from your design system, and map whole user journeys.",
       "category": "design"
     }
   ]

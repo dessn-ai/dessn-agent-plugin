@@ -29,6 +29,15 @@ Every client, with copy buttons: https://mcp.dessn.ai/install
 You need a Dessn account with a project: https://create.dessn.ai. Frame and board writes spend no credits; runs of Dessn's
 design agent do.
 
+## What it runs and what it reaches
+
+- **Network:** one endpoint, the Dessn MCP at `https://mcp.dessn.ai/mcp`, signed in with OAuth in your browser (PKCE; no
+  password or key is stored by the plugin). Nothing else is downloaded or called.
+- **Claude Code session note:** `session-fact.sh` prints `session-start.md` (a short description of what Dessn does) once
+  per session, at its start or at your first message when Dessn was installed mid-session. It makes no network call and
+  writes only an empty marker file per session in the plugin's data folder (removed after 7 days). Codex and Cursor don't
+  run it.
+
 ## Support
 
 - Help: hello@dessn.ai
