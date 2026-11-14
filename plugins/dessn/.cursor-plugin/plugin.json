@@ -1,18 +1,21 @@
 {
   "name": "dessn",
-  "version": "1.0.82",
-  "description": "Design on Dessn from your own agent: Dessn's design skills (explore an app, reuse its design system, variations as copies checked against real pictures, readable boards and flows) plus the Dessn MCP, signed in with OAuth.",
+  "displayName": "Dessn",
+  "version": "1.0.91",
+  "description": "You can now use Dessn from your favourite agent. More convenient, more context. And all the visual power of Dessn.",
   "author": {
-    "name": "Dessn"
+    "name": "Dessn",
+    "url": "https://dessn.ai"
   },
   "homepage": "https://mcp.dessn.ai/install",
+  "repository": "https://github.com/dessn-ai/dessn-agent-plugin",
+  "license": "MIT",
   "keywords": [
-    "design",
-    "canvas",
-    "prototyping",
-    "mcp"
+    "dessn",
+    "dessn canvas",
+    "dessn mcp"
   ],
-  "logo": "assets/logo.svg",
+  "logo": "assets/logo-square.svg",
   "skills": "./skills/",
   "mcpServers": "./.mcp.json"
 }

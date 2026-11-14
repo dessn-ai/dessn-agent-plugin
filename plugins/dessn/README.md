@@ -1,8 +1,8 @@
 # Dessn
 
-Dessn is a design canvas where every frame is your real app, running from its own code, with sample data standing in for
-the backend. This plugin connects your coding agent to Dessn: the Dessn MCP (`https://mcp.dessn.ai/mcp`, signed in once
-with your Dessn account in your browser) and Dessn's design skills.
+<!-- copy:intro -->
+[Dessn](https://dessn.ai) is a design canvas where every frame is your real app, running live from its own code. This plugin gives your coding agent Dessn's tools (the Dessn MCP, signed in with your Dessn account) and Dessn's design skills.
+<!-- /copy:intro -->
 
 ## What it brings
 
@@ -29,9 +29,31 @@ Every client, with copy buttons: https://mcp.dessn.ai/install
 You need a Dessn account with a project: https://create.dessn.ai. Frame and board writes spend no credits; runs of Dessn's
 design agent do.
 
+## What it runs and what it reaches
+
+- **Network:** one endpoint, the Dessn MCP at `https://mcp.dessn.ai/mcp`, signed in with OAuth in your browser (PKCE; no
+  password or key is stored by the plugin). Nothing else is downloaded or called.
+- **Claude Code session note:** `session-fact.sh` prints `session-start.md` (a short description of what Dessn does) once
+  per session, at its start or at your first message when Dessn was installed mid-session. It makes no network call and
+  writes only an empty marker file per session in the plugin's data folder (removed after 7 days). Codex and Cursor don't
+  run it.
+
+<!-- copy:quotes -->
+## What teams say
+
+> “The way that it looks on Dessn is the way that we have it in production.”
+> Cristian, Founding Product Designer, Lette
+
+> “It is using our design system, it is following our design rules…”
+> Elyse, Staff Design Engineer, Color
+
+> “It went through our entire application, and I could watch it reason… It popped up two or three areas where I was like, ‘Oh, that’s right. That field is hidden on that flow in the back.’”
+> Alex Michaels, Head of Product at RISR
+<!-- /copy:quotes -->
+
 ## Support
 
-- Help: hello@dessn.ai
+- Help: service@dessn.ai (https://www.dessn.com/support)
 - Privacy policy: https://www.dessn.com/privacy
 - Terms: https://www.dessn.com/terms
 

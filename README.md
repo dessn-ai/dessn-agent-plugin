@@ -1,6 +1,8 @@
 # Dessn for your agent
 
+<!-- copy:intro -->
 [Dessn](https://dessn.ai) is a design canvas where every frame is your real app, running live from its own code. This plugin gives your coding agent Dessn's tools (the Dessn MCP, signed in with your Dessn account) and Dessn's design skills.
+<!-- /copy:intro -->
 
 ## Install
 
@@ -30,9 +32,27 @@ The same skills come from the Dessn MCP itself, as prompts (`/dessn:design` in C
 - `plugins/dessn/`: the plugin (`.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.mcp.json`, `skills/`).
 - `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, `.cursor-plugin/marketplace.json`: this repository as a marketplace for Claude Code, Codex and Cursor.
 
+## Network
+
+The plugin talks to one endpoint, `https://mcp.dessn.ai/mcp` (OAuth with PKCE in your browser). Claude Code also runs a
+session hook that prints `plugins/dessn/session-start.md` once per session, with no network call.
+
+<!-- copy:quotes -->
+## What teams say
+
+> “The way that it looks on Dessn is the way that we have it in production.”
+> Cristian, Founding Product Designer, Lette
+
+> “It is using our design system, it is following our design rules…”
+> Elyse, Staff Design Engineer, Color
+
+> “It went through our entire application, and I could watch it reason… It popped up two or three areas where I was like, ‘Oh, that’s right. That field is hidden on that flow in the back.’”
+> Alex Michaels, Head of Product at RISR
+<!-- /copy:quotes -->
+
 ## Support
 
-- Help: hello@dessn.ai
+- Help: service@dessn.ai (https://www.dessn.com/support)
 - Privacy policy: https://www.dessn.com/privacy
 - Terms: https://www.dessn.com/terms
 
